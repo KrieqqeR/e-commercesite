@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <div className='bg-[#FAFAFA]'>
             {/* Üst Bandage Kısmı */}
-            <div className='flex w-[70rem] justify-between mx-auto mb-40 h-40'>
+            <div className='flex w-[70rem] justify-between mx-auto mb-5 h-40'>
                 <h1 className='text-[#252B42] text-[1.5rem] font-bold my-auto'>Bandage</h1>
                 <div className='flex gap-4'>
                     <img src="https://file.rendit.io/n/Z2m7AGKDWjSidq8VzAzO.svg" alt='resim' className="w-6" />

@@ -134,26 +134,85 @@ const data = {
             Oran: Oran
         }
     ],
-    productPage:[{
-            sarıKoltukBuyuk:SarıKoltukBuyuk,
-            sarıKoltukKucuk:SarıKoltukKucuk,
-            KahvarengiKoltukKucuk:KahvarengiKoltukKucuk,
-            title:"Floating Phone",
-            yıldızKapalı:"https://file.rendit.io/n/6OxYlOD93n2OfDwVSUbE.svg",
-            yıldızAcık:"https://file.rendit.io/n/qxDaIqzt5i2UHmkD9TFD.svg",
-            fiyat:"$1,139.33",
-            status:"Availability",
-            status2:"In Stock",
-            yazi:"Met minim Mollie non desert Alamo est sit cliquey dolor  do met sent.RELIT official consequent door ENIM RELIT Mollie.Excitation venial consequent sent nostrum met.",
-            blue:"https://file.rendit.io/n/avG9WMhlfR7I7DaoKiIy.svg",
-            green:"https://file.rendit.io/n/fXPzvpGwZbF4eH5AvRyV.svg",
-            orange:"https://file.rendit.io/n/8oORSUU3beph3oNE0XV3.svg",
-            black:"https://file.rendit.io/n/vo6FzU9qJmcF7S6Zkioh.svg",
-            reviews:"10 Reviews",
-            IconIncele: IconIncele,
-            IconKalp: IconKalp,
-            IconAlısverisi: IconSepet
+    productPage: [{
+        sarıKoltukBuyuk: SarıKoltukBuyuk,
+        sarıKoltukKucuk: SarıKoltukKucuk,
+        KahvarengiKoltukKucuk: KahvarengiKoltukKucuk,
+        title: "Floating Phone",
+        yıldızKapalı: "https://file.rendit.io/n/6OxYlOD93n2OfDwVSUbE.svg",
+        yıldızAcık: "https://file.rendit.io/n/qxDaIqzt5i2UHmkD9TFD.svg",
+        fiyat: "$1,139.33",
+        status: "Availability",
+        status2: "In Stock",
+        yazi: "Met minim Mollie non desert Alamo est sit cliquey dolor  do met sent.RELIT official consequent door ENIM RELIT Mollie.Excitation venial consequent sent nostrum met.",
+        blue: "https://file.rendit.io/n/avG9WMhlfR7I7DaoKiIy.svg",
+        green: "https://file.rendit.io/n/fXPzvpGwZbF4eH5AvRyV.svg",
+        orange: "https://file.rendit.io/n/8oORSUU3beph3oNE0XV3.svg",
+        black: "https://file.rendit.io/n/vo6FzU9qJmcF7S6Zkioh.svg",
+        reviews: "10 Reviews",
+        IconIncele: IconIncele,
+        IconKalp: IconKalp,
+        IconAlısverisi: IconSepet
     }
-]
+    ],
+    productPageProducts: [
+        {
+            resim: ProductCard1,
+            yazı: "Graphic Design",
+            yazı2: "English Department",
+            fiyat: "$16.48",
+            fiyat2: "$6.48"
+        },
+        {
+            resim: ProductCard1,
+            yazı: "Graphic Design",
+            yazı2: "English Department",
+            fiyat: "$16.48",
+            fiyat2: "$6.48"
+        },
+        {
+            resim: ProductCard1,
+            yazı: "Graphic Design",
+            yazı2: "English Department",
+            fiyat: "$16.48",
+            fiyat2: "$6.48"
+
+        },
+        {
+            resim: ProductCard1,
+            yazı: "Graphic Design",
+            yazı2: "English Department",
+            fiyat: "$16.48",
+            fiyat2: "$6.48"
+        },
+        {
+            resim: ProductCard1,
+            yazı: "Graphic Design",
+            yazı2: "English Department",
+            fiyat: "$16.48",
+            fiyat2: "$6.48"
+        },
+        {
+            resim: ProductCard1,
+            yazı: "Graphic Design",
+            yazı2: "English Department",
+            fiyat: "$16.48",
+            fiyat2: "$6.48"
+        },
+        {
+            resim: ProductCard1,
+            yazı: "Graphic Design",
+            yazı2: "English Department",
+            fiyat: "$16.48",
+            fiyat2: "$6.48"
+        },
+        {
+            resim: ProductCard1,
+            yazı: "Graphic Design",
+            yazı2: "English Department",
+            fiyat: "$16.48",
+            fiyat2: "$6.48"
+        },
+    ],
 }
 export default data;
