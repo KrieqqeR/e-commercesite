@@ -1,7 +1,14 @@
 import React from 'react'
+import Header from '../layouts/Header'
+import ProductHomeShop from '../components/ProductHomeShop'
+import ProductPageSlider from '../components/ProductPageSlider'
 
 export default function Productpage() {
   return (
-    <div>Productpage</div>
+    <div>
+      <Header />
+      <ProductHomeShop />
+      <ProductPageSlider />
+    </div>
   )
 }

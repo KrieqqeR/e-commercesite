@@ -10,6 +10,9 @@ import IconKalp from "../assets/iconKalp.png"
 import IconSepet from "../assets/iconAlısveris.png"
 import IconIncele from "../assets/iconIncele.png"
 import Oran from "../assets/Yıldız Ve ORan.png"
+import SarıKoltukBuyuk from "../assets/ProductPageSarıKoltuk.png"
+import SarıKoltukKucuk from "../assets/ProductPageSarıKoltukKucuk.png"
+import KahvarengiKoltukKucuk from "../assets/KahavetengiKoltukkucuk.png"
 
 const data = {
     productCards: [
@@ -130,7 +133,24 @@ const data = {
             IconAlısverisi: IconSepet,
             Oran: Oran
         }
-
-    ]
+    ],
+    productPage:[{
+            sarıKoltukBuyuk:SarıKoltukBuyuk,
+            sarıKoltukKucuk:SarıKoltukKucuk,
+            KahvarengiKoltukKucuk:KahvarengiKoltukKucuk,
+            title:"Flatoing Phone",
+            yıldızKapalı:"https://file.rendit.io/n/6OxYlOD93n2OfDwVSUbE.svg",
+            yıldızAcık:"https://file.rendit.io/n/qxDaIqzt5i2UHmkD9TFD.svg",
+            fiyat:"$1,139.33",
+            status:"Availability",
+            status2:"In Stock",
+            yazi:"Met minim Mollie non desert Alamo est sit cliquey dolor  do met sent.RELIT official consequent door ENIM RELIT Mollie.Excitation venial consequent sent nostrum met.",
+            blue:"https://file.rendit.io/n/avG9WMhlfR7I7DaoKiIy.svg",
+            green:"https://file.rendit.io/n/fXPzvpGwZbF4eH5AvRyV.svg",
+            orange:"https://file.rendit.io/n/8oORSUU3beph3oNE0XV3.svg",
+            black:"https://file.rendit.io/n/vo6FzU9qJmcF7S6Zkioh.svg",
+            
+    }
+]
 }
 export default data;
