@@ -9,7 +9,7 @@ import { FiTwitter, FiYoutube } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
 import { CiFacebook } from "react-icons/ci"
 
-export default function Homepage() {
+export default function Header() {
     return (
         <div>
             <div className="bg-[#252B42]">

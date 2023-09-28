@@ -1,5 +1,5 @@
 import React from 'react'
-import data from '../data/Data.js'
+import data from "../data/Data"
 
 export default function FeaturedPosts() {
     return (
