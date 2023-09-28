@@ -138,7 +138,7 @@ const data = {
             sarıKoltukBuyuk:SarıKoltukBuyuk,
             sarıKoltukKucuk:SarıKoltukKucuk,
             KahvarengiKoltukKucuk:KahvarengiKoltukKucuk,
-            title:"Flatoing Phone",
+            title:"Floating Phone",
             yıldızKapalı:"https://file.rendit.io/n/6OxYlOD93n2OfDwVSUbE.svg",
             yıldızAcık:"https://file.rendit.io/n/qxDaIqzt5i2UHmkD9TFD.svg",
             fiyat:"$1,139.33",
@@ -149,7 +149,10 @@ const data = {
             green:"https://file.rendit.io/n/fXPzvpGwZbF4eH5AvRyV.svg",
             orange:"https://file.rendit.io/n/8oORSUU3beph3oNE0XV3.svg",
             black:"https://file.rendit.io/n/vo6FzU9qJmcF7S6Zkioh.svg",
-            
+            reviews:"10 Reviews",
+            IconIncele: IconIncele,
+            IconKalp: IconKalp,
+            IconAlısverisi: IconSepet
     }
 ]
 }
