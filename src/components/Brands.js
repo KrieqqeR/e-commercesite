@@ -8,13 +8,13 @@ import Brand6 from "../assets/fa-brands-6.png"
 
 export default function Brands() {
   return (
-    <div className='flex justify-center gap-40 mt-40 mb-40'>
-        <img src={Brand1}></img>
-        <img src={Brand2}></img>
-        <img src={Brand3}></img>
-        <img src={Brand4}></img>
-        <img src={Brand5}></img>
-        <img src={Brand6}></img>
+    <div className='flex justify-between mx-48 my-24'>
+        <img className='object-contain' src={Brand1}></img>
+        <img className='object-contain'  src={Brand2}></img>
+        <img className='object-contain'  src={Brand3}></img>
+        <img className='object-contain'  src={Brand4}></img>
+        <img className='object-contain'  src={Brand5}></img>
+        <img className='object-contain'  src={Brand6}></img>
     </div>
   )
 }
