@@ -20,7 +20,7 @@ export default function ProductListPageCards() {
             ))}
 
             {/* Page değiştirme yerleri. */}
-            <div className='flex mx-auto '>
+            <div className='flex mx-auto mt-10'>
                 <div className='flex w-[20rem] h-[4.5rem] justify-between border'>
                     <button className='text-[#BDBDBD] bg-[#F3F3F3] p-[1.56rem] font-semibold'>
                         First
