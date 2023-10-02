@@ -6,6 +6,9 @@ import AboutPageRate from '../components/AboutPageRate'
 import AboutPageVideo from '../components/AboutPageVideo'
 import AboutTeamComponents from '../components/AboutPageTeam'
 import AboutTeamPageBigComponies from '../components/AboutTeamPageBigComponies'
+import Brands from "../components/Brands"
+import AboutPageNowLetsGrow from '../components/AboutPageNowLetsGrow'
+import Footer from "../layouts/Footer"
 
 export default function About() {
     return (
@@ -17,6 +20,9 @@ export default function About() {
             <AboutPageVideo />
             <AboutTeamComponents />
             <AboutTeamPageBigComponies />
+            <Brands />
+            <AboutPageNowLetsGrow />
+            <Footer/>
         </div>
 
     )
