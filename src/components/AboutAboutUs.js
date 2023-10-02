@@ -3,7 +3,7 @@ import YellowGirl from "../assets/AboutPageYellowGirl.png"
 
 export default function AboutAboutUs() {
     return (
-        <div className="mt-28 w-[90rem] mx-auto flex h-[40rem] justify-between">
+        <div className="mt-16 w-[90rem] mx-auto flex h-[40rem] justify-between">
             {/* Sol Kısım */}
             <div className='ml-16 h-[25rem] items-center align-middle my-auto'>
                 <h6 className='text-[#252B42] font-bold'>ABOUT COMPANY</h6>
