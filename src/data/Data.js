@@ -13,6 +13,7 @@ import Oran from "../assets/Yıldız Ve ORan.png"
 import SarıKoltukBuyuk from "../assets/ProductPageSarıKoltuk.png"
 import SarıKoltukKucuk from "../assets/ProductPageSarıKoltukKucuk.png"
 import KahvarengiKoltukKucuk from "../assets/KahavetengiKoltukkucuk.png"
+import ProductListPageShopCard1 from "../assets/ProductListPageShop1.jpg"
 
 const data = {
     productCards: [
@@ -214,5 +215,30 @@ const data = {
             fiyat2: "$6.48"
         },
     ],
+    ProductListPageShop: [
+    {
+        resim:ProductListPageShopCard1,
+        title:"CLOTHS",
+        unit:"5 Items"
+    },
+    {
+        resim:ProductListPageShopCard1,
+        title:"CLOTHS",
+        unit:"5 Items"
+    },
+    {
+        resim:ProductListPageShopCard1,
+        title:"CLOTHS",
+        unit:"5 Items"
+    },{
+        resim:ProductListPageShopCard1,
+        title:"CLOTHS",
+        unit:"5 Items"
+    },{
+        resim:ProductListPageShopCard1,
+        title:"CLOTHS",
+        unit:"5 Items"
+    }
+]
 }
 export default data;
