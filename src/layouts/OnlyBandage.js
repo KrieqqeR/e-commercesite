@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function OnlyBandage() {
   return (
@@ -7,7 +8,7 @@ export default function OnlyBandage() {
                 <div className="text-black flex justify-between items-center text-center ml-16">
                     <h1 className="text-[1.5rem] font-bold text-[#252B42]">Bandage</h1>
                     <div className="flex gap-5 mr-80 mt-1">
-                        <a className="text-[#737373] font-bold" href="#">Home</a>
+                    <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
                         <a className="text-[#737373] font-bold" href="#">Product</a>
                         <a className="text-[#737373] font-bold" href="#">Pricing</a>
                         <a className="text-[#737373] font-bold" href="#">Contact</a>

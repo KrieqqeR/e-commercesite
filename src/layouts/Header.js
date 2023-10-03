@@ -8,6 +8,7 @@ import {
 import { FiTwitter, FiYoutube } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
 import { CiFacebook } from "react-icons/ci"
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Header() {
     return (
@@ -44,7 +45,7 @@ export default function Header() {
                 <div className="text-black flex justify-between mx-16">
                     <h1 className="text-[1.5rem] font-bold text-[#252B42]">Bandage</h1>
                     <div className="flex gap-5 mr-80 mt-1">
-                        <a className="text-[#737373] font-bold" href="#">Home</a>
+                        <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
                         <a className="text-[#737373] font-bold" href="#">Shop ↓</a>
                         <a className="text-[#737373] font-bold" href="#">About</a>
                         <a className="text-[#737373] font-bold" href="#">Blog</a>
