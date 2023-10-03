@@ -15,7 +15,7 @@ export default function OnlyBandage() {
                     </div>
                     <div className='flex gap-16 items-center text-center justify-center relative'>
                         <h5 className='cursor-pointer text-[#23A6F0] font-semibold'>Login</h5>
-                        <button className='py-[0.94rem] px-[2rem] pr-12 rounded-md bg-[#23A6F0] text-[#FFFFFF]'>
+                        <button className='py-[0.94rem] font-bold px-[2rem] pr-12 rounded-md bg-[#23A6F0] text-[#FFFFFF]'>
                             Become a Member
                         </button>
                         <img src="https://file.rendit.io/n/ojwfStaZGYGdnC7qem2f.svg" className='absolute right-2 w-4 h-4 top-5'/>
