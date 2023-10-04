@@ -6,6 +6,7 @@ import ProductListPage from './pages/ProductListPage';
 import About from './pages/About';
 import Team from './pages/Team';
 import Contact from './pages/Contact';
+import Pricing from './pages/Pricing';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about"  component={About}/>
           <Route path="/team"  component={Team}/>
           <Route path="/contact" component={Contact} />
+          <Route path="/pricing" component={Pricing} />
         </Switch>
       </Router>
     </div>
