@@ -6,7 +6,7 @@ export default function TeamPageFreeTrial() {
             <h1 className='text-[#252B42] text-[2.5rem] font-bold'>Start your 14 days free trial</h1>
             <p className='my-[1.88rem] text-[#737373] font-semibold'>Met minim Mollie non desert Alamo est sit cliquey dolordo met sent. RELIT official consequent.</p>
             <button className='mb-[1.88rem] px-[2.5rem] py-[1rem] bg-[#23A6F0] text-[#FFFFFF] font-bold rounded'>Try it free now</button>
-            <div className='flex justify-center gap-[2.125rem]'>
+            <div className='flex justify-center gap-[2.125rem] my-[2rem]'>
                 <img
                     src="https://file.rendit.io/n/Z4bGQqOeLFJIxPrJ6ioP.svg"
                     id="LogostwitterRoot"
