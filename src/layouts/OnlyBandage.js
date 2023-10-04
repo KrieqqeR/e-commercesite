@@ -9,9 +9,9 @@ export default function OnlyBandage() {
                     <h1 className="text-[1.5rem] font-bold text-[#252B42]">Bandage</h1>
                     <div className="flex gap-5 mr-80 mt-1">
                     <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
-                        <a className="text-[#737373] font-bold" href="#">Product</a>
-                        <a className="text-[#737373] font-bold" href="#">Pricing</a>
-                        <a className="text-[#737373] font-bold" href="#">Contact</a>
+                    <NavLink to={"/products"} className="text-[#737373] font-bold" >Products</NavLink>
+                    <NavLink to={"/pricing"} className="text-[#737373] font-bold" >Pricing</NavLink>
+                    <NavLink to={"/contact"} className="text-[#737373] font-bold" >Contact</NavLink>
                     </div>
                     <div className='flex gap-16 items-center text-center justify-center relative'>
                         <h5 className='cursor-pointer text-[#23A6F0] font-semibold'>Login</h5>

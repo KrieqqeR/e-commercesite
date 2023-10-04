@@ -46,22 +46,22 @@ export default function Header() {
                     <h1 className="text-[1.5rem] font-bold text-[#252B42]">Bandage</h1>
                     <div className="flex gap-5 mr-80 mt-1">
                         <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
-                        <a className="text-[#737373] font-bold" href="#">Shop ↓</a>
-                        <a className="text-[#737373] font-bold" href="#">About</a>
-                        <a className="text-[#737373] font-bold" href="#">Blog</a>
-                        <a className="text-[#737373] font-bold" href="#">Contact</a>
-                        <a className="text-[#737373] font-bold" href="#">Pages</a>
+                        <NavLink to={"/products"} className="text-[#737373] font-bold" >Products</NavLink>
+                        <NavLink to={"/about"} className="text-[#737373] font-bold" >About</NavLink>
+                        <NavLink to={"/contact"} className="text-[#737373] font-bold" >Contact</NavLink>
+                        <NavLink to={"/productlistpage"} className="text-[#737373] font-bold" >Pages</NavLink>
+                        <NavLink to={"/pricing"} className="text-[#737373] font-bold" >Pricing</NavLink>
                     </div>
                     <div className="flex gap-2 font-bold">
-                        <BiUserCircle className="mt-1"/>
-                        <p>Login / Register </p>
-                        <BsSearch className="mt-1"/>
-                        <div className="flex">
-                            <AiOutlineShoppingCart className="mt-1"/>
+                        <BiUserCircle className="mt-1 cursor-pointer" />
+                        <p className="cursor-pointer">Login / Register </p>
+                        <BsSearch className="mt-1" />
+                        <div className="flex cursor-pointer">
+                            <AiOutlineShoppingCart className="mt-1 cursor-pointer" />
                             <span className="mt-1">1</span>
                         </div>
-                        <div className="flex">
-                            <AiOutlineHeart className="mt-1"/>
+                        <div className="flex cursor-pointer">
+                            <AiOutlineHeart className="mt-1" />
                             <span className="mt-1">1</span>
                         </div>
                     </div>
