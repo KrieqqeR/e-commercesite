@@ -45,12 +45,12 @@ export default function Footer() {
                     </div>
                     {/* Formun oldugu yer */}
                     <div>
-                        <h1 className='text-[#252B42] text-[1rem] font-bold'>Get In Touch</h1>
+                        <h1 className='text-[#252B42] text-[1rem] font-bold '>Get In Touch</h1>
                         <div>
                             <input
                                 type="text"
                                 placeholder="Your E-mail"
-                                className="rounded-md py-4 px-5  border border-custom-button"
+                                className="rounded-md py-4 px-5  border border-custom-button bg-[#FFFFFF]"
                             />
                             <button
                                 variant="primary"

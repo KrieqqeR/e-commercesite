@@ -11,13 +11,27 @@ export default function ProductPageSlider() {
                     <div key={index} className='flex'>
                         {/* Sol Kısım */}
                         <div className='relative'>
-                            <img src={product.sarıKoltukBuyuk} className='w-[70rem]' />
+                            <div className="carousel w-full">
+                                <div id="slide1" className="carousel-item relative w-full">
+                                    <img src={product.sarıKoltukBuyuk} className="w-full" />
+                                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                        <a href="#slide4" className="btn btn-circle">❮</a>
+                                        <a href="#slide2" className="btn btn-circle">❯</a>
+                                    </div>
+                                </div>
+                                <div id="slide2" className="carousel-item relative w-full">
+                                    <img src={product.sarıKoltukBuyuk} className="w-full" />
+                                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                        <a href="#slide1" className="btn btn-circle">❮</a>
+                                        <a href="#slide3" className="btn btn-circle">❯</a>
+                                    </div>
+                                </div>
+                            </div>
                             <div className='flex gap-6 my-6'>
                                 <img src={product.KahvarengiKoltukKucuk} />
                                 <img src={product.sarıKoltukKucuk} />
                             </div>
-                            <img className='absolute top-56 left-4' src={solOk} />
-                            <img className='absolute top-56 right-4' src={sagOk} />
+
                         </div>
                         {/* Sağ Kısım */}
                         <div className='pl-8'>
