@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <div className='bg-[#FAFAFA]'>
             {/* Üst Bandage Kısmı */}
-            <div className='flex w-[70rem] flex-wrap flex-row mobile:flex-col justify-between mx-auto mb-5 h-40'>
+            <div className='flex w-[70rem] mobile:w-[20rem] flex-wrap flex-row mobile:flex-col justify-between mx-auto mb-5 h-40'>
                 <h1 className='text-[#252B42] text-[1.5rem] font-bold my-auto mobile:pl-20'>Bandage</h1>
                 <div className='flex gap-4 flex-row flex-wrap mobile:pl-20'>
                     <img src="https://file.rendit.io/n/Z2m7AGKDWjSidq8VzAzO.svg" alt='resim' className="w-6" />
@@ -14,7 +14,7 @@ export default function Footer() {
             </div>
             {/* Alt Kısım */}
             <div className='mb-20 '>
-                <div className='w-[70rem] mx-auto flex flex-wrap justify-between flex-row mobile:flex-col mobile:pl-20 gap-y-8'>
+                <div className='w-[70rem] mobile:w-[20rem] mx-auto flex flex-wrap justify-between flex-row mobile:flex-col mobile:pl-20 gap-y-8'>
                     <div className='w-[9.25rem] '>
                         <h1 className='text-[#252B42] text-[1rem] font-bold'>Company Info</h1>
                         <h6 className='text-[#737373] text-[0.875rem] font-semibold my-3'>About Us</h6>
@@ -64,7 +64,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className='bg-[#FAFAFA] w-[70rem] mx-auto'>
+            <div className='bg-[#FAFAFA] w-[70rem] mobile:w-[25rem] mx-auto'>
                 <p className='text-[#737373] text-[1rem] font-semibold leading-6 tracking-[.025rem] py-[1.5rem] mobile:pl-10'>
                     Made With Love By Finland All Right Reserved
                 </p>

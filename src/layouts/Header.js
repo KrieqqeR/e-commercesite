@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 export default function Header() {
     return (
         <div>
-            <div className="bg-[#252B42] desktop-only">
+            <div className="bg-[#252B42] mobile:hidden">
                 <div className="flex justify-between items-center h-16 text-white mx-16">
                     {/* NAVBAR SOL ÜST */}
                     <div className="flex ">
@@ -41,10 +41,10 @@ export default function Header() {
                 </div>
             </div>
             {/* Burası Bandage olan kısım */}
-            <div className="mt-4">
-                <div className="text-black flex justify-between mx-16">
+            <div className="mt-4 mobile:flex mobile:flex-wrap mobile:flex-col">
+                <div className="text-black flex flex-wrap justify-between mx-16">
                     <h1 className="text-[1.5rem] font-bold text-[#252B42]">Bandage</h1>
-                    <div className="flex gap-5 mr-80 mt-1">
+                    <div className="flex flex-wrap gap-5 mr-80 mt-1">
                         <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
                         <NavLink to={"/products"} className="text-[#737373] font-bold" >Products</NavLink>
                         <NavLink to={"/about"} className="text-[#737373] font-bold" >About</NavLink>
@@ -53,8 +53,8 @@ export default function Header() {
                         <NavLink to={"/pricing"} className="text-[#737373] font-bold" >Pricing</NavLink>
                     </div>
                     <div className="flex gap-2 font-bold">
-                        <BiUserCircle className="mt-1 cursor-pointer" />
-                        <p className="cursor-pointer">Login / Register </p>
+                        <BiUserCircle className="mt-1 cursor-pointer mobile:hidden" />
+                        <p className="cursor-pointer mobile:hidden">Login / Register </p>
                         <BsSearch className="mt-1" />
                         <div className="flex cursor-pointer">
                             <AiOutlineShoppingCart className="mt-1 cursor-pointer" />

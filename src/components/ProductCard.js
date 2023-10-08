@@ -9,15 +9,15 @@ export default function ProductCard() {
             {/* İç kısım 2 dive ayırdım... Sol ve Sağ Olarak */}
             <div className='flex w-1/2 h-full'>
                 <div className='m-auto mobile:m-0 mobile:ml-5'>
-                    <div className='w-full'>
+                    <div className='w-full mobile:ml-10'>
                         <h1 className='text-base text-[#2A7CC7] font-bold'>SUMMER 2023</h1>
-                        <h1 className='text-[3.625rem] font-bold text-[#252B42]'>NEW COLLECTION</h1>
+                        <h1 className='text-[3.625rem] mobile:text-[2rem] font-bold text-[#252B42]'>NEW COLLECTION</h1>
                         <p className='text-xl font-semibold text-[#737373]'>We know how large objects will act,
                         </p>
                         <p className='text-xl font-semibold text-[#737373]'> 
                         but things on a small scale.
                         </p>
-                        <button className="px-[2.5rem] py-[1rem] bg-[#23A6F0] rounded mt-5 text-white font-bold text-[1.5rem]">
+                        <button className="px-[2.5rem] mobile:px-[1.5rem] py-[1rem] bg-[#23A6F0] rounded mt-5 text-white font-bold text-[1.5rem]">
                             SHOP NOW
                         </button>
                     </div>
@@ -26,7 +26,7 @@ export default function ProductCard() {
             <div className='flex flex-wrap flex-col'>
                 <img src={kucukBeyaz} className='absolute mobile:pl-60 mobile:hidden'></img>
                 <img src={buyukBeyaz} className='absolute right-12 z-1 mobile:hidden'></img>
-                <img className='w-[42.2rem] h-[42.2rem] h:[10rem] absolute right-4 top-40 z-2  mobile:w-[20rem] mobile:h-[20rem] mobile:mt-[23rem] mobile:mr-[5rem]' src={kızResim} alt='Resim'></img>
+                <img className='w-[42.2rem] h-[42.2rem] h:[10rem] absolute right-4 top-40 z-2  mobile:w-[20rem] mobile:h-[20rem] mobile:mt-[35.5rem] mobile:mr-[5rem]' src={kızResim} alt='Resim'></img>
             </div>
         </div>
     )
