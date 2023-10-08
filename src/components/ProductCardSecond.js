@@ -5,7 +5,7 @@ export default function ProductCardSecond() {
     return (
         <div className='mb-40 mx-24'>
             {/* Üst Bilgilendirme Div*/}
-            <div className='w-[20rem] mobile:w-20 mx-auto flex-row mobile:flex mobile:flex-wrap mobile:flex-col mobile:mr-24 gap-2.5'>
+            <div className='w-[20rem] mobile:w-20  mx-auto flex-row mobile:flex mobile:flex-wrap mobile:flex-col mobile:mr-32 gap-2.5'>
                 <h1 className='text-center text-[#737373] text-[1.5rem] font-normal'>Featured Products</h1>
                 <h1 className='text-center text-[#252B42] text-[1.5rem] font-bold'>BESTSELLER PRODUCTS</h1>
                 <p className='text-center text-[#737373] text-[0.875rem]'>Problems trying to resolve the conflict between </p>
