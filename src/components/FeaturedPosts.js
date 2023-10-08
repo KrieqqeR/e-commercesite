@@ -5,13 +5,13 @@ export default function FeaturedPosts() {
     return (
         <div className='mb-40'>
             {/* Üst Div */}
-            <div className='text-center w-1/5 mx-auto'>
+            <div className='text-center mobile:w-full w-1/5 mx-auto'>
                 <h6 className='text-[#23A6F0] text-[0.875rem] font-bold'>Practice Advice</h6>
-                <h1 className='mt-4 text-[#252B42] text-[2.5rem] font-bold tracking-[0.0125rem]'>Featured Posts</h1>
+                <h1 className='mt-4 mobile:w-[20rem] mobile:mx-auto text-[#252B42] text-[2.5rem] font-bold tracking-[0.0125rem]'>Featured Posts</h1>
             </div>
 
             {/* Alt Div */}
-            <div className='flex justify-center mt-24'>
+            <div className='flex flex-wrap flex-row gap-y-8 mobile:px-3 justify-center mt-24'>
                 {data.featuredPost.map((elaman, index) => (
                     <div className='relative flex' key={index}>
                         {/* Resim-Sol Div */}
@@ -37,7 +37,7 @@ export default function FeaturedPosts() {
                                 <h1 className='mx-4 text-[#23856D] text-[1.rem] font-bold'>{elaman.fiyat2}</h1>
                             </div>
                             <img src={elaman.productColors} alt='resim' />
-                            <div className='flex justify-evenly mt-8 mr-16 gap-2'>
+                            <div className='flex flex-wrap justify-evenly mt-8 mr-16 gap-2'>
                                 <div className='flex gap-1'>
                                     <img alt='resim' src={elaman.saatResim} />
                                     <h5>{elaman.saat}</h5>
