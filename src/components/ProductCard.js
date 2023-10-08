@@ -5,7 +5,7 @@ import buyukBeyaz from "../assets/buyukBeyaz.png"
 
 export default function ProductCard() {
     return (
-        <div className='flex h-[40rem] bg-gradient-to-br from-[#96E9FB] to-[#ABECD6] rounded-[1.25rem] mt-20 mx-20'>
+        <div className='flex md:h-[40rem] h-[50rem] bg-gradient-to-br from-[#96E9FB] to-[#ABECD6] rounded-[1.25rem] mt-20 mx-20'>
             {/* İç kısım 2 dive ayırdım... Sol ve Sağ Olarak */}
             <div className='flex w-1/2 h-full'>
                 <div className='m-auto'>
@@ -23,10 +23,10 @@ export default function ProductCard() {
                     </div>
                 </div>
             </div>
-            <div>
-                <img src={kucukBeyaz} className='absolute pl-60'></img>
-                <img src={buyukBeyaz} className='absolute right-12 z-1'></img>
-                <img className='w-[42.2rem] h-[42.2rem] absolute right-4 top-40 z-2' src={kızResim} alt='Resim'></img>
+            <div className='flex flex-wrap flex-col'>
+                <img src={kucukBeyaz} className='md:absolute md:pl-60 hidden'></img>
+                <img src={buyukBeyaz} className='md:absolute md:right-12 md:z-1 hidden'></img>
+                <img className='md:w-[42.2rem] md:h-[42.2rem] h:[10rem] md:absolute md:right-4 md:top-40 md:z-2  w-[20rem] ' src={kızResim} alt='Resim'></img>
             </div>
         </div>
     )

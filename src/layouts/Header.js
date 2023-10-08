@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 export default function Header() {
     return (
         <div>
-            <div className="bg-[#252B42]">
+            <div className="bg-[#252B42] desktop-only">
                 <div className="flex justify-between items-center h-16 text-white mx-16">
                     {/* NAVBAR SOL ÜST */}
                     <div className="flex ">
