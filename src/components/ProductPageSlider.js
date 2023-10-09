@@ -5,10 +5,10 @@ import sagOk from "../assets/SağOk.png"
 
 export default function ProductPageSlider() {
     return (
-        <div className='w-[70rem] mx-auto my-20'>
+        <div className='w-[70rem] mobile:w-[20rem] mobile:flex-col mobile:flex-wrap mx-auto my-20'>
             <div>
                 {data.productPage.map((product, index) => (
-                    <div key={index} className='flex'>
+                    <div key={index} className='flex mobile:flex-wrap'>
                         {/* Sol Kısım */}
                         <div className='relative'>
                             <div className="carousel w-full">
@@ -27,7 +27,7 @@ export default function ProductPageSlider() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex gap-6 my-6'>
+                            <div className='flex gap-6 my-6 mobile:justify-center'>
                                 <img src={product.KahvarengiKoltukKucuk} />
                                 <img src={product.sarıKoltukKucuk} />
                             </div>
