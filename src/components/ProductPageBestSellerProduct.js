@@ -4,7 +4,7 @@ import data from '../data/Data'
 export default function ProductPageBestSellerProduct() {
   return (
     <div className='w-[80rem] mobile:w-[20rem] flex-wrap mx-auto mt-20'>
-      <h1 className='pl-[12rem mobile:ml-0 mobile:text-center text-[1.5rem] text-[#252B42] font-bold'>BESTSELLER PRODUCTS</h1>
+      <h1 className='pl-[12rem] mobile:ml-0 mobile:text-center text-[1.5rem] text-[#252B42] font-bold text-center'>BESTSELLER PRODUCTS</h1>
       <div className='flex mobile:mx-0 flex-wrap mx-20 mt-10 justify-center'>
         {data.productPageProducts.map((product, index) => (
           <div key={index} className='ml-20 mobile:ml-0 mobile:w-full'>
