@@ -26,7 +26,7 @@ export default function ProductCard() {
             <div className='flex flex-wrap flex-col'>
                 <img src={kucukBeyaz} className='absolute mobile:pl-60 mobile:hidden'></img>
                 <img src={buyukBeyaz} className='absolute right-12 z-1 mobile:hidden'></img>
-                <img className='w-[42.2rem] h-[42.2rem] h:[10rem] absolute right-4 top-40 z-2  mobile:w-[20rem] mobile:h-[20rem] mobile:mt-[24.2rem] mobile:mr-[5rem]' src={kızResim} alt='Resim'></img>
+                <img className='w-[42.2rem] h-[42.2rem] h:[10rem] absolute right-4 top-40 z-2  mobile:w-[20rem] mobile:h-[20rem] mobile:mt-[36.2rem] mobile:mr-[5rem]' src={kızResim} alt='Resim'></img>
             </div>
         </div>
     )

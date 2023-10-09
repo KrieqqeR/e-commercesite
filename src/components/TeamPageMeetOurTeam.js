@@ -18,7 +18,7 @@ export default function TeamPageMeetOurTeam() {
 
                 {/* Maplenen yer */}
 
-                <div className='w-[70rem] flex flex-wrap justify-around'>
+                <div className='w-[70rem] mobile:w-[20rem] flex flex-wrap justify-around'>
                     {data.TeamPageTeamCard.map((eleman, index) => (
                         <div key={index} className='w-[20rem] cursor-pointer mt-20'>
                             <img src={eleman.resim} alt='resim' />

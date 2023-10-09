@@ -44,15 +44,16 @@ export default function Header() {
             <div className="mt-4 ">
                 <div className="text-black flex flex-wrap  justify-between mx-16 mobile:mx-4">
                     <h1 className="text-[1.5rem] font-bold text-[#252B42] mobile:mx-auto">Bandage</h1>
-                    <div className="flex  gap-5 mr-80 mt-1">
+                    <div className="flex mobile:flex-col mobile:mr-0 mobile:mt-20 gap-5 mr-80 mt-1">
                         <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
                         <NavLink to={"/products"} className="text-[#737373] font-bold" >Products</NavLink>
                         <NavLink to={"/about"} className="text-[#737373] font-bold" >About</NavLink>
                         <NavLink to={"/contact"} className="text-[#737373] font-bold" >Contact</NavLink>
                         <NavLink to={"/productlistpage"} className="text-[#737373] font-bold" >Pages</NavLink>
-                        <NavLink to={"/pricing"} className="text-[#737373] font-bold" >Pricing</NavLink>
+                        {/* <NavLink to={"/pricing"} className="text-[#737373] font-bold" >Pricing</NavLink> */}
+                        <NavLink to={"/team"} className="text-[#737373] font-bold" >Team</NavLink>
                     </div>
-                    <div className="flex gap-2 font-bold mobile:mt-10 mobile:mx-auto">
+                    <div className="flex gap-2 font-bold mobile:mt-0 mobile:mx-auto">
                         <BiUserCircle className="mt-1 cursor-pointer mobile:hidden" />
                         <p className="cursor-pointer mobile:hidden">Login / Register </p>
                         <BsSearch className="mt-1" />

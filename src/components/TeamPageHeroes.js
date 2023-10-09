@@ -7,9 +7,9 @@ import Picture4 from "../assets/TeamPageBlueJEan.png"
 
 export default function TeamPageHeroes() {
     return (
-        <div className='my-20 flex'>
+        <div className='my-20 flex mobile:flex-col mobile:gap-y-6'>
             {/* Sol Kısım */}
-            <img className='min-w-[50%] mr-4' src={redGirl} alt='resim'  />
+            <img className='min-w-[50%] mr-4 mobile:w-full' src={redGirl} alt='resim'  />
             {/* Sağ Kısım */}
             <div className='flex gap-4 min-w-[50%]'>
                 <div className='flex flex-col justify-center items-center h-[100%] w-[50%]'>
