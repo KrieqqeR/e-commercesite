@@ -18,7 +18,7 @@ export default function ContactPageWeHelp() {
                     <img src="https://file.rendit.io/n/OYx95Q42ydulZLcXSxFz.svg" className="w-16 mx-auto" />
                     <p className='my-[0.94rem] text-[#FFFFFF] font-bold'>georgia.young@example.com</p>
                     <p className='text-[#FFFFFF] font-bold'>georgia.young@ple.com</p>
-                    <p className='text-[#252B42] font-bold py-[.94rem] text-[#FFFFFF] font-bold'>Get Support</p>
+                    <p className=' py-[.94rem] text-[#FFFFFF] font-bold'>Get Support</p>
                     <button className='mt-[0.94rem] px-[2.25rem] py-[.94rem] text-[#23A6F0] font-bold border border-[#23A6F0] rounded-[2.3rem]'>Submit Request</button>
                 </div>
                 <div className='w-[33.3%] mobile:w-full px-[2.5rem] py-[3.12rem] pt-20'>
