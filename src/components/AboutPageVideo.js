@@ -14,7 +14,7 @@ export default function AboutPageVideo() {
                 <source src={video} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <div className='absolute top-52 left-[56rem]'>
+            <div className='absolute top-52 left-[56rem] mobile:hidden'>
                 <button className="overflow-hidden bg-[#23a6f0] flex flex-col justify-center w-24 h-24 items-center rounded-[73.5999984741211px]">
                     <img
                         src="https://file.rendit.io/n/V23vJlUqPotoLaHf9rdc.svg"

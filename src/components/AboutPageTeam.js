@@ -24,7 +24,7 @@ export default function AboutTeamComponents() {
 
         {/* Maplenen yer */}
 
-        <div className='w-[90rem] flex justify-around mt-16'>
+        <div className='w-[90rem] mobile:w-[20rem] mobile:flex-wrap mobile:gap-y-12 flex justify-around mt-16'>
           {data.AboutPageTeamCard.map((eleman, index) => (
             <div key={index} className='w-[20rem] cursor-pointer'>
               <img src={eleman.resim} alt='resim' />

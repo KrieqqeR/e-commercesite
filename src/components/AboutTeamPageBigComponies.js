@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function AboutTeamPageBigComponies() {
     return (
-        <div className='w-[90rem] mx-auto mt-24 flex flex-col justify-center items-center'>
+        <div className='w-[90rem] mobile:w-[20rem] mx-auto mt-24 flex flex-col justify-center items-center'>
 
             <div className="text-[2.5rem] font-bold text-[#252b42]">Big Companies Are Here</div>
 
