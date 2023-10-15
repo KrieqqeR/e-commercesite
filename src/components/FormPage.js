@@ -1,13 +1,23 @@
+import axios from 'axios';
 import React from 'react';
-import { useState } from 'react';
+import { useState, CSSProperties } from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+};
 
 export default function FormPage() {
 
-    const { register, handleSubmit, watch, formState: { errors }} = useForm();
-    
-    
-    const [selectedRole , setSelectedRole] = useState("Customer")
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    let [loading, setLoading] = useState(false);
+    let [color, setColor] = useState("#ffffff");
+
+    const [selectedRole, setSelectedRole] = useState("Customer")
     const name = watch("name") || "";
     const storeName = watch("storeName") || "";
     const email = watch("email") || "";
@@ -18,22 +28,33 @@ export default function FormPage() {
 
 
     const onSubmit = (data) => {
-        // Sadece belirli koşullara göre verileri gönder
         const formData = {};
         if (selectedRole === "Customer") {
             formData.name = data.name;
             formData.email = data.email;
-            formData.password=data.password;
+            formData.password = data.password;
             formData.role_id = selectedRole;
         } else if (selectedRole === "Store") {
             formData.name = data.name;
             formData.email = data.email;
             formData.storeName = data.storeName;
-            formData.storeTaxId=data.storeTaxId;
-            formData.storeBankAccount=data.storeBankAccount;
+            formData.storeTaxId = data.storeTaxId;
+            formData.storeBankAccount = data.storeBankAccount;
             formData.role_id = selectedRole;
         }
-        console.log(formData);
+        setLoading(true);
+
+        axios.post('https://workintech-fe-ecommerce.onrender.com/signup', formData)
+            .then(function (response) {
+                console.log('Başarılı:', response.data);
+            })
+            .catch(function (error) {
+                console.error('Hata:', error);
+            })
+            .finally(function () {
+                setLoading(false)
+            });
+
     };
 
 
@@ -64,7 +85,7 @@ export default function FormPage() {
                                     message: "Name should be at least 3 characters",
                                 },
                             })}
-                            
+
                         />
                         {name.length < 3 && (
                             <p className="text-red-500 text-xs italic">
@@ -81,8 +102,8 @@ export default function FormPage() {
                         </label>
                         <input className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.email ? "border-red-500" : "border-gray-200"
                             } rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} id="grid-password" type="email" placeholder="abc@gmail.com" {...register("email", { required: "Email should be written", pattern: { value: /^\S+@\S+$/i, message: "Enter an invalid email address" } })}
-                             />
-                            
+                        />
+
                         {email.length < 3 && (
                             <p className="text-red-500 text-xs italic">
                                 {errors.email ? errors.email.message : ""}
@@ -273,13 +294,20 @@ export default function FormPage() {
                     </div>
                 )}
 
-
-
-
-
-
-
-                <button className=" mt-12 appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ">Sıgn up</button>
+                <div className="flex items-center mt-10">
+                    {loading ? (
+                        <div className="mr-4">
+                            <ClipLoader
+                                size={30}
+                                color={"#123abc"}
+                                loading={loading}
+                            />
+                        </div>
+                    ) : null}
+                    <button type='submit' className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 leading-tight focus:outline-none focus:bg-blue-600 hover:bg-blue-500 focus:border-gray-500 ">
+                        {loading ? "Loading..." : "Submit"}
+                    </button>
+                </div>
             </form>
         </div>
     );
