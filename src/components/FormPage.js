@@ -4,19 +4,18 @@ import { useState, CSSProperties } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const override: CSSProperties = {
-    display: "block",
-    margin: "0 auto",
-    borderColor: "red",
-};
+
 
 export default function FormPage() {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     let [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#ffffff");
-
+    const history = useHistory();
+    const [isFormValid, setFormValid] = useState(false);
     const [selectedRole, setSelectedRole] = useState("Customer")
     const name = watch("name") || "";
     const storeName = watch("storeName") || "";
@@ -25,7 +24,7 @@ export default function FormPage() {
     const passwordMatch = watch("passwordMarch") || "";
     const storeTaxId = watch("storeTaxId") || "";
 
-
+    
 
     const onSubmit = (data) => {
         const formData = {};
@@ -47,15 +46,21 @@ export default function FormPage() {
         axios.post('https://workintech-fe-ecommerce.onrender.com/signup', formData)
             .then(function (response) {
                 console.log('Başarılı:', response.data);
+                history.push('/products');
+                toast.success("Aktivasyon Başarılı...")
             })
             .catch(function (error) {
                 console.error('Hata:', error);
+                toast.error("Aktivasyon Hatası...")
+
             })
             .finally(function () {
-                setLoading(false)
-                console.log(formData)
+                setTimeout(() => {
+                    setLoading(false)
+                    console.log(formData)
+                    history.push("/products")
+                }, 2000)
             });
-
     };
 
 
@@ -270,7 +275,7 @@ export default function FormPage() {
                                     className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.storeBankAccount ? "border-red-500" : "border-gray-200"} rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                                     id="storeBankAccount"
                                     type="text"
-                                    placeholder="TXXXXXXXXXXXXXXXXXXXXXXXXX" // Replace with the desired IBAN format
+                                    placeholder="TXXXXXXXXXXXXXXXXXXXXXXXXX"
                                     {...register("storeBankAccount", {
                                         required: "Store Bank Account is required",
                                         minLength: {
@@ -310,6 +315,7 @@ export default function FormPage() {
                     </button>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     );
 }
