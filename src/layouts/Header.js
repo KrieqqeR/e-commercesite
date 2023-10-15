@@ -9,6 +9,7 @@ import { FiTwitter, FiYoutube } from "react-icons/fi";
 import { BiUserCircle } from "react-icons/bi";
 import { CiFacebook } from "react-icons/ci"
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
@@ -55,7 +56,7 @@ export default function Header() {
                     </div>
                     <div className="flex gap-2 font-bold mobile:mt-0 mobile:mx-auto">
                         <BiUserCircle className="mt-1 cursor-pointer mobile:hidden" />
-                        <p className="cursor-pointer mobile:hidden">Login / Register </p>
+                        <Link to="/formpage" className="cursor-pointer mobile:hidden">Login / Register </Link>
                         <BsSearch className="mt-1" />
                         <div className="flex cursor-pointer">
                             <AiOutlineShoppingCart className="mt-1 cursor-pointer" />
