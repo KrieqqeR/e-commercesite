@@ -53,6 +53,7 @@ export default function FormPage() {
             })
             .finally(function () {
                 setLoading(false)
+                console.log(formData)
             });
 
     };
