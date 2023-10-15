@@ -76,10 +76,12 @@ export default function FormPage() {
                     background: 'linear-gradient(to right, #ffffff, #0000ff, #ff0000)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
+                    textAlign: "center",
                     fontSize: '3rem',
                     fontWeight: 'bold',
-                    display: 'inline',
-                    marginLeft: "40rem"
+                    display: 'flex',
+                    marginLeft: "auto",
+                    marginRight: "auto"
                 }}>WELCOME TO SIGN UP PAGE</h1>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg h-[85vh] mobile:px-16 mx-auto">
@@ -330,7 +332,7 @@ export default function FormPage() {
                 </form>
                 <ToastContainer />
             </div>
-        </div>
+        </div >
 
     );
 }
