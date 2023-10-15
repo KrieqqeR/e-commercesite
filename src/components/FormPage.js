@@ -7,9 +7,13 @@ export default function FormPage() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
     const name = watch("name") || "";
+    const storeName = watch("storeName") || "";
     const email = watch("email") || "";
     const password = watch("password") || "";
     const passwordMatch = watch("passwordMarch") || "";
+    const [showStoreRole, setShowStoreRole] = useState(false);
+    const storeTaxId = watch("storeTaxId") || "";
+
 
 
     const onSubmit = data => console.log(data);
@@ -73,22 +77,29 @@ export default function FormPage() {
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="password">
                             Password
                         </label>
-                        <input className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.password ? "border-red-500" : "border-gray-200"
-                            } rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} id="password" type="password" placeholder="Password" {...register("password", {
+                        <input
+                            className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.password ? "border-red-500" : "border-gray-200"} rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                            id="password"
+                            type="password"
+                            {...register("password", {
                                 required: "Password is required",
-                                minLength: {
-                                    value: 8,
-                                    message: "Password must have at least 8 characters",
+                                validate: (value) => {
+                                    const hasUppercase = /[A-Z]/.test(value);
+                                    const hasLowercase = /[a-z]/.test(value);
+                                    const hasSpecialChar = /[\W_]/.test(value);
+                                    const hasMinLength = value.length >= 8;
+
+                                    if (hasUppercase && hasLowercase && hasSpecialChar && hasMinLength) {
+                                        return true;
+                                    }
+
+                                    return "Password must meet all requirements: at least 8 characters, one uppercase letter, one lowercase letter, and one special character.";
                                 },
-                                pattern: {
-                                    value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/,
-                                    message:
-                                        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
-                                },
-                            })} />
-                        {password.length < 8 && (
+                            })}
+                        />
+                        {errors.password && (
                             <p className="text-red-500 text-xs italic">
-                                {errors.password ? errors.password.message : ""}
+                                {errors.password.message}
                             </p>
                         )}
                     </div>
@@ -133,10 +144,10 @@ export default function FormPage() {
                             Role
                         </label>
                         <div className="relative">
-                            <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="role">
+                            <select onChange={() => setShowStoreRole(!showStoreRole)} className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="role">
                                 <option>Customer</option>
-                                <option>Store</option>
-                                
+                                <option >Store</option>
+
                             </select>
                             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                 <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
@@ -144,6 +155,77 @@ export default function FormPage() {
                         </div>
                     </div>
                 </div>
+                {showStoreRole && (
+                    <div>
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <div className="w-full px-3">
+                                <label
+                                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    htmlFor="name"
+                                >
+                                    Store Name
+                                </label>
+                                <input
+                                    className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.email ? "border-red-500" : "border-gray-200"
+                                        } rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                                    id="storeName"
+                                    type="text"
+                                    placeholder="Store Name"
+                                    {...register("storeName", {
+                                        required: "Store name is required",
+                                        minLength: {
+                                            value: 3,
+                                            message: "Store name should be at least 3 characters",
+                                        },
+                                    })}
+                                />
+                                {storeName.length < 3 && (
+                                    <p className="text-red-500 text-xs italic">
+                                        {errors.storeName ? errors.storeName.message : ""}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <div className="w-full px-3">
+                                <label
+                                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    htmlFor="name"
+                                >
+                                    Store Tax ID
+                                </label>
+                                <input
+                                    className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.email ? "border-red-500" : "border-gray-200"
+                                        } rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
+                                    id="storeTaxId"
+                                    type="text"
+                                    placeholder='TXXXXVXXXXXX'
+                                    {...register("storeTaxId", {
+                                        required: "Store Tax Id is required",
+                                        minLength: {
+                                            value: 12,
+                                            message: "Store Tax Id be at least 12 characters",
+                                        },
+                                    })}
+                                />
+                                {storeTaxId.length < 12 && (
+                                    <p className="text-red-500 text-xs italic">
+                                        {errors.storeTaxId ? errors.storeTaxId.message : ""}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+
+                    </div>
+                )}
+
+
+
+
+
+
+
                 <button className=" mt-12 appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ">Sıgn up</button>
             </form>
         </div>
