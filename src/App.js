@@ -7,6 +7,7 @@ import About from './pages/About';
 import Team from './pages/Team';
 import Contact from './pages/Contact';
 import Pricing from './pages/Pricing';
+import FormPage from './components/FormPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/team"  component={Team}/>
           <Route path="/contact" component={Contact} />
           <Route path="/pricing" component={Pricing} />
+          <Route path="/formpage" component={FormPage}/>
         </Switch>
       </Router>
     </div>
