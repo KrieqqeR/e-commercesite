@@ -51,14 +51,16 @@ export default function FormPage() {
                 setTimeout(() => {
                     setLoading(false)
                     console.log(formData)
-                    history.push("/products")
+                    history.push("/")
+                    //Context ile is loggeDın true yapılacak değeri ....
+                    //True ise home page de alert basılacak ve aynı zamanda responsedata message ve isloggedin use COntex ile gönderilecek...
+                    
                 }, 1000)
                 
             })
             .catch(function (error) {
                 console.error('Hata:', error);
                 toast.error("Aktivasyon Hatası...")
-
             })
             
     };
