@@ -45,22 +45,22 @@ export default function FormPage() {
 
         axios.post('https://workintech-fe-ecommerce.onrender.com/signup', formData)
             .then(function (response) {
-                console.log('Başarılı:', response.data);
-                history.push('/products');
-                toast.success("Aktivasyon Başarılı...")
+                
+                console.log("Message : " , response.data.message )
+                toast.success("Aktivasyon Başarılı... " + response.data.message)
+                setTimeout(() => {
+                    setLoading(false)
+                    console.log(formData)
+                    history.push("/products")
+                }, 1000)
+                
             })
             .catch(function (error) {
                 console.error('Hata:', error);
                 toast.error("Aktivasyon Hatası...")
 
             })
-            .finally(function () {
-                setTimeout(() => {
-                    setLoading(false)
-                    console.log(formData)
-                    history.push("/products")
-                }, 2000)
-            });
+            
     };
 
 
