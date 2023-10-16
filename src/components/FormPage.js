@@ -130,7 +130,7 @@ export default function FormPage() {
                                 } rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`} id="grid-password" type="email" placeholder="abc@gmail.com" {...register("email", { required: "Email should be written", pattern: { value: /^\S+@\S+$/i, message: "Enter an invalid email address" } })}
                             />
 
-                            {email.length < 3 && (
+                            {errors.email && (
                                 <p className="text-red-500 text-xs italic">
                                     {errors.email ? errors.email.message : ""}
                                 </p>
