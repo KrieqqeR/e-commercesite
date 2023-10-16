@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function FormPage() {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({mode:"onChange"});
     let [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#ffffff");
     const history = useHistory();
