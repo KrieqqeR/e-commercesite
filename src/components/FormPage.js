@@ -6,12 +6,13 @@ import { useHistory } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from '../layouts/Header';
 
 
 
 export default function FormPage() {
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({mode:"onChange"});
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({ mode: "onChange" });
     let [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#ffffff");
     const history = useHistory();
@@ -36,33 +37,42 @@ export default function FormPage() {
         } else if (selectedRole === "Store") {
             formData.name = data.name;
             formData.email = data.email;
-            formData.storeName = data.storeName;
-            formData.storeTaxId = data.storeTaxId;
-            formData.storeBankAccount = data.storeBankAccount;
+            formData.password=data.password;
             formData.role_id = selectedRole;
+            formData.store = {
+                name: data.storeName,
+                tax_no: data.storeTaxId,
+                bank_account: data.storeBankAccount
+            }
         }
         setLoading(true);
 
         axios.post('https://workintech-fe-ecommerce.onrender.com/signup', formData)
             .then(function (response) {
-                
-                console.log("Message : " , response.data.message )
+
+                console.log("Message : ", response.data.message)
                 toast.success("Aktivasyon Başarılı... " + response.data.message)
                 setTimeout(() => {
                     setLoading(false)
                     console.log(formData)
-                    history.push("/")
+                    history.push({
+                        pathname: "/",
+                        state: {
+                            message:
+                                response.data.message
+                        }
+                    })
                     //Context ile is loggeDın true yapılacak değeri ....
                     //True ise home page de alert basılacak ve aynı zamanda responsedata message ve isloggedin use COntex ile gönderilecek...
-                    
+
                 }, 1000)
-                
+
             })
             .catch(function (error) {
                 console.error('Hata:', error);
                 toast.error("Aktivasyon Hatası...")
             })
-            
+
     };
 
 
@@ -70,23 +80,19 @@ export default function FormPage() {
 
     return (
 
-        <div className='bg-cover bg-center h-screen' style={{ backgroundImage: 'url("https://e1.pxfuel.com/desktop-wallpaper/581/154/desktop-wallpaper-backgrounds-for-login-page-login-page.jpg")' }}>
+        <div
+            className='bg-cover bg-center h-screen'
+            style={{
+                backgroundImage: 'url("https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg")',
+            }}
+        >
 
+            <Header />
 
             <div className='pt-[2rem] '>
-                <h1 style={{
-                    background: 'linear-gradient(to right, #ffffff, #0000ff, #ff0000)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    textAlign: "center",
-                    fontSize: '3rem',
-                    fontWeight: 'bold',
-                    display: 'flex',
-                    marginLeft: "auto",
-                    marginRight: "auto"
-                }}>WELCOME TO SIGN UP PAGE</h1>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg h-[85vh] mobile:px-16 mx-auto">
+
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-lg mobile:px-16 mx-auto">
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full md:w-1/2 px-3 mb-6 mx-auto md:mb-0">
                             <label
@@ -266,22 +272,23 @@ export default function FormPage() {
                                             } rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                                         id="storeTaxId"
                                         type="text"
-                                        placeholder='TXXXXVXXXXXX'
+                                        placeholder="TXXXXVXXXXXX"
                                         {...register("storeTaxId", {
                                             required: "Store Tax Id is required",
-                                            minLength: {
-                                                value: 12,
-                                                message: "Store Tax Id be at least 12 characters",
+                                            pattern: {
+                                                value: /^T\d{4}V\d{6}$/,
+                                                message: "Store Tax Id should start with 'T' and be followed by 4 digits and then 'V' followed by 6 digits.",
                                             },
                                         })}
                                     />
-                                    {storeTaxId.length < 12 && (
+                                    {errors.storeTaxId && (
                                         <p className="text-red-500 text-xs italic">
-                                            {errors.storeTaxId ? errors.storeTaxId.message : ""}
+                                            {errors.storeTaxId.message}
                                         </p>
                                     )}
                                 </div>
                             </div>
+
 
                             <div className="flex flex-wrap -mx-3 mb-6">
                                 <div className="w-full px-3">
@@ -292,7 +299,7 @@ export default function FormPage() {
                                         className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${errors.storeBankAccount ? "border-red-500" : "border-gray-200"} rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`}
                                         id="storeBankAccount"
                                         type="text"
-                                        placeholder="TXXXXXXXXXXXXXXXXXXXXXXXXX"
+                                        placeholder="TRXXXXXXXXXXXXXXXXXXXXXXXXXX"
                                         {...register("storeBankAccount", {
                                             required: "Store Bank Account is required",
                                             minLength: {
@@ -312,6 +319,7 @@ export default function FormPage() {
                                     )}
                                 </div>
                             </div>
+
 
 
                         </div>
