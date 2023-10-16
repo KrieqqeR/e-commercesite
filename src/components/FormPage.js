@@ -62,10 +62,7 @@ export default function FormPage() {
                                 response.data.message
                         }
                     })
-                    //Context ile is loggeDın true yapılacak değeri ....
-                    //True ise home page de alert basılacak ve aynı zamanda responsedata message ve isloggedin use COntex ile gönderilecek...
-
-                }, 1000)
+                }, 2000)
 
             })
             .catch(function (error) {
