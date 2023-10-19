@@ -69,6 +69,9 @@ export default function FormPage() {
                 console.error('Hata:', error);
                 toast.error("Aktivasyon Hatası...")
             })
+            .finally(function(){
+                setLoading(false);
+            })
 
     };
 
