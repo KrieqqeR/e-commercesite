@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from '../layouts/Header';
 
 
-
 export default function FormPage() {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm({ mode: "onChange" });
@@ -37,7 +36,7 @@ export default function FormPage() {
         } else if (selectedRole === "Store") {
             formData.name = data.name;
             formData.email = data.email;
-            formData.password=data.password;
+            formData.password = data.password;
             formData.role_id = selectedRole;
             formData.store = {
                 name: data.storeName,
@@ -69,13 +68,11 @@ export default function FormPage() {
                 console.error('Hata:', error);
                 toast.error("Aktivasyon Hatası...")
             })
-            .finally(function(){
+            .finally(function () {
                 setLoading(false);
             })
 
     };
-
-
 
 
     return (
@@ -342,8 +339,8 @@ export default function FormPage() {
                     </div>
                 </form>
                 <ToastContainer />
+
             </div>
         </div >
-
     );
 }
