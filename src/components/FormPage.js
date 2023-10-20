@@ -24,7 +24,9 @@ export default function FormPage() {
     const passwordMatch = watch("passwordMarch") || "";
     const storeTaxId = watch("storeTaxId") || "";
 
-
+/*1 store
+2 user 
+3 admin başkan*/
 
     const onSubmit = (data) => {
         const formData = {};
@@ -32,12 +34,12 @@ export default function FormPage() {
             formData.name = data.name;
             formData.email = data.email;
             formData.password = data.password;
-            formData.role_id = selectedRole;
+            selectedRole === "Customer" ? formData.role_id = 1 : formData.role_id = 2;
         } else if (selectedRole === "Store") {
             formData.name = data.name;
             formData.email = data.email;
             formData.password = data.password;
-            formData.role_id = selectedRole;
+            formData.role_id = 3;
             formData.store = {
                 name: data.storeName,
                 tax_no: data.storeTaxId,
