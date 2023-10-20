@@ -79,9 +79,7 @@ export default function FormPage() {
 
         <div
             className='bg-cover bg-center h-screen'
-            style={{
-                backgroundImage: 'url("https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg")',
-            }}
+            
         >
 
             <Header />
