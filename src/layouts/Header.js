@@ -56,7 +56,7 @@ export default function Header() {
                     </div>
                     <div className="flex gap-2 font-bold mobile:mt-0 mobile:mx-auto">
                         <BiUserCircle className="mt-1 cursor-pointer mobile:hidden" />
-                        <Link to="/formpage" className="cursor-pointer mobile:hidden">Login / Register </Link>
+                        <Link to="/signup" className="cursor-pointer mobile:hidden">Login / Register </Link>
                         <BsSearch className="mt-1" />
                         <div className="flex cursor-pointer">
                             <AiOutlineShoppingCart className="mt-1 cursor-pointer" />

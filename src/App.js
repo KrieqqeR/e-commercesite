@@ -21,7 +21,7 @@ function App() {
           <Route path="/team"  component={Team}/>
           <Route path="/contact" component={Contact} />
           <Route path="/pricing" component={Pricing} />
-          <Route path="/formpage" component={FormPage}/>
+          <Route path="/signup" component={FormPage}/>
         </Switch>
       </Router>
     </div>

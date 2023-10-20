@@ -24,9 +24,7 @@ export default function FormPage() {
     const passwordMatch = watch("passwordMarch") || "";
     const storeTaxId = watch("storeTaxId") || "";
 
-/*1 store
-2 user 
-3 admin başkan*/
+
 
     const onSubmit = (data) => {
         const formData = {};
