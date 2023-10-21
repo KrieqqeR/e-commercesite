@@ -3,15 +3,17 @@ import {
 } from "../actions/userActions";
 
 const initialState = {
-
+    user: {}
 }
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:
-            return state;
+            return {
+                ...state, user: action.payload
+            }
         default:
-            return state;
+            return state.user;
     }
 
 }
