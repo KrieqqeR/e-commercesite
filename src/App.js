@@ -10,6 +10,7 @@ import Pricing from './pages/Pricing';
 import FormPage from './components/FormPage';
 
 function App() {
+  
   return (
     <div className="App">
       <Router>
