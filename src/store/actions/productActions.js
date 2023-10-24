@@ -37,7 +37,7 @@ export const changeFetchState = () => (dispatch) => {
     axios
       .get("https://workintech-fe-ecommerce.onrender.com/")
       .then((res) => {
-        dispatch({ type: FETCH_SUCCESS, payload: res.data });
+        dispatch({ type: FETCHED, payload: res.data });
         console.log(res.data);
       })
       .catch((err) => {
@@ -45,6 +45,6 @@ export const changeFetchState = () => (dispatch) => {
         dispatch({ type: FAILED, payload: err.message });
       })
       .finally(() => {
-        dispatch({ type: FETCH_LOADING });
+        dispatch({ type: FETCHING });
       });
   };

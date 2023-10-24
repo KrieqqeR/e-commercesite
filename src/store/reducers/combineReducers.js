@@ -6,12 +6,13 @@ import shoppingCardReducer from "./shoppingCardReducer";
 import storeReducer from "./storeReducer";
 
 
-export const reducers = combineReducers({
+const reducers = combineReducers({
     globalReducer,
     userReducer,
     productReducer,
     shoppingCardReducer,
     storeReducer
 });
+export default reducers;
 
 
