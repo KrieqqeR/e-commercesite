@@ -26,7 +26,7 @@ export const addPageCount = () => {
     return { type: ADD_PAGECOUNT }
 }
 export const deletePageCount = () => {
-    return { type: ADD_PAGECOUNT }
+    return { type: DELETE_PAGECOUNT }
 }
 export const setActivePage = (page) => {
     return { type: SET_ACTIVEPAGE, payload: page }
