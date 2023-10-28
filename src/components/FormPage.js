@@ -1,6 +1,6 @@
-import axios from 'axios';
+import {api} from "../api/api"
 import React from 'react';
-import { useState, CSSProperties } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
@@ -10,28 +10,26 @@ import Header from '../layouts/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {fetchRoles} from "../store/actions/globalActions"
-import {api} from "../api/api"
+import Footer from "../layouts/Footer"
 
 export default function FormPage() {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm({ mode: "onChange" });
     let [loading, setLoading] = useState(false);
-    let [color, setColor] = useState("#ffffff");
+    
     const history = useHistory();
-    const [isFormValid, setFormValid] = useState(false);
     const [selectedRole, setSelectedRole] = useState("Customer")
     const name = watch("name") || "";
     const storeName = watch("storeName") || "";
-    const email = watch("email") || "";
+    
     const password = watch("password") || "";
     const passwordMatch = watch("passwordMarch") || "";
-    const storeTaxId = watch("storeTaxId") || "";
     const roles = useSelector((store)=>store.global.roles)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        roles.length===0 && dispatch(fetchRoles())
-       }, []);
+        roles.length === 0 && dispatch(fetchRoles());
+    }, [dispatch, roles.length]);
 
     const onSubmit = (data) => {
         const formData = {};
@@ -346,6 +344,8 @@ export default function FormPage() {
                 <ToastContainer />
 
             </div>
+
+            <Footer/>
         </div >
     );
 }

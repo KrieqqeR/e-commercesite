@@ -1,4 +1,3 @@
-import axios from "axios";
 import { api } from "../../api/api"
 export const SET_ROLES = "SET_ROLES";
 export const SET_CATEGORY = "SET_CATEGORY";

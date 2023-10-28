@@ -3,8 +3,6 @@ import {
     CHANGE_LANGUAGE,
     SET_ROLES,
     CHANGE_THEME,
-    FETCH_ROLES_SUCCESS,
-    FETCH_ROLES_FAILURE,
 } from "../actions/globalActions";
 
 const initialState = {
@@ -36,15 +34,6 @@ const globalReducer = (state = initialState, action) => {
                 ...state,
                 theme: state.theme === "dark" ? "light" : "dark"
             }
-        // case FETCH_ROLES_SUCCESS:
-        //     return {
-        //         ...state,
-        //         roles: action.payload
-        //     }
-        // case FETCH_ROLES_FAILURE:
-        //     return {
-        //         ...state.roles
-        //     }
 
         default:
             return state;
