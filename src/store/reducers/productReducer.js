@@ -1,59 +1,34 @@
 import {
-    SET_PRODUCT,
-    SET_ACTIVEPAGE,
-    ADD_PAGECOUNT,
-    DELETE_PAGECOUNT,
-    CHANGE_FETCH_STATE,
-    ADD_COUNT,
-    REMOVE_COUNT
-} from "../actions/productActions"
-
-const initialState = {
+    SET_PRODUCT_LIST,
+    SET_PRODUCT_COUNT,
+    SET_PAGE_COUNT,
+    SET_ACTIVE_PAGE,
+    SET_FETCH_STATE,
+  } from "../actions/productActions";
+  
+  const initialState = {
     productList: [],
     totalProductCount: 0,
     pageCount: 0,
-    activePage: 1,
-    fetchState: "NOT_FETCHED"
-}
-
-const productReducer = (state = initialState, action) => {
+    activePage: 0,
+    fetchState: "",
+  };
+  
+  const poductReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_PRODUCT:
-            return {
-                ...state, productList: [action.payload]
-            }
-        case ADD_COUNT:
-            return {
-                ...state, totalProductCount: state.totalProductCount + 1
-            }
-        case REMOVE_COUNT:
-            return {
-                ...state, totalProductCount: state.totalProductCount - 1
-            }
-        case SET_ACTIVEPAGE: {
-            return {
-                ...state, activePage: action.payload
-            }
-        }
-        case ADD_PAGECOUNT: {
-            return {
-                ...state, pageCount: state.pageCount + 1
-            }
-        }
-        case DELETE_PAGECOUNT: {
-            return {
-                ...state, pageCount:state.pageCount - 1
-            }
-        }
-        case CHANGE_FETCH_STATE:{
-            return {
-                ...state , fetchState:action.payload
-            }
-        }
-        default :
-        return initialState;
-
+      case SET_PRODUCT_LIST:
+        return { ...state, productList: action.payload };
+      case SET_PRODUCT_COUNT:
+        return { ...state, totalProductCount: action.payload };
+      case SET_PAGE_COUNT:
+        return { ...state, pageCount: action.payload };
+      case SET_ACTIVE_PAGE:
+        return { ...state, activePage: action.payload };
+      case SET_FETCH_STATE:
+        return { ...state, fetchState: action.payload };
+      default:
+        return state;
     }
-}
-
-export default productReducer;
+  };
+  
+  export default poductReducer;

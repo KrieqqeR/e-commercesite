@@ -2,7 +2,9 @@ import {
     SET_CATEGORY,
     CHANGE_LANGUAGE,
     SET_ROLES,
-    CHANGE_THEME
+    CHANGE_THEME,
+    FETCH_ROLES_SUCCESS,
+    FETCH_ROLES_FAILURE,
 } from "../actions/globalActions";
 
 const initialState = {
@@ -17,12 +19,12 @@ const globalReducer = (state = initialState, action) => {
         case SET_CATEGORY:
             return {
                 ...state,
-                categories: [...state.categories, action.payload] 
+                categories: [...state.categories, action.payload]
             }
         case SET_ROLES:
             return {
                 ...state,
-                roles: [...state.roles, action.payload] 
+                roles: [...state.roles, action.payload]
             }
         case CHANGE_LANGUAGE:
             return {
@@ -34,6 +36,16 @@ const globalReducer = (state = initialState, action) => {
                 ...state,
                 theme: state.theme === "dark" ? "light" : "dark"
             }
+        // case FETCH_ROLES_SUCCESS:
+        //     return {
+        //         ...state,
+        //         roles: action.payload
+        //     }
+        // case FETCH_ROLES_FAILURE:
+        //     return {
+        //         ...state.roles
+        //     }
+
         default:
             return state;
     }

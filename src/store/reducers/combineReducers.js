@@ -7,11 +7,11 @@ import storeReducer from "./storeReducer";
 
 
 const reducers = combineReducers({
-    globalReducer,
-    userReducer,
-    productReducer,
-    shoppingCardReducer,
-    storeReducer
+   global: globalReducer,
+   user: userReducer,
+   product: productReducer,
+   shopping: shoppingCardReducer,
+   store: storeReducer
 });
 export default reducers;
 

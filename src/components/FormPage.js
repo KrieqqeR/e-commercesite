@@ -7,6 +7,9 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../layouts/Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import {fetchRoles} from "../store/actions/globalActions"
 
 
 export default function FormPage() {
@@ -23,8 +26,12 @@ export default function FormPage() {
     const password = watch("password") || "";
     const passwordMatch = watch("passwordMarch") || "";
     const storeTaxId = watch("storeTaxId") || "";
+    const roles = useSelector((store)=>store.global.roles)
+    const dispatch = useDispatch();
 
-
+    useEffect(() => {
+        roles.length===0 && dispatch(fetchRoles())
+       }, []);
 
     const onSubmit = (data) => {
         const formData = {};
