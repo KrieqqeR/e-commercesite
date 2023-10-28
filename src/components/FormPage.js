@@ -10,7 +10,7 @@ import Header from '../layouts/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {fetchRoles} from "../store/actions/globalActions"
-
+import {api} from "../api/api"
 
 export default function FormPage() {
 
@@ -53,7 +53,7 @@ export default function FormPage() {
         }
         setLoading(true);
 
-        axios.post('https://workintech-fe-ecommerce.onrender.com/signup', formData)
+        api.post('/signup', formData)
             .then(function (response) {
 
                 console.log("Message : ", response.data.message)
