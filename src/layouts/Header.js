@@ -11,12 +11,26 @@ import { CiFacebook } from "react-icons/ci"
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from 'react-router-dom';
 import md5 from "md5";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setUser } from "../store/actions/userActions"
 
 export default function Header() {
+    const dispatch = useDispatch();
+    const user = useSelector((select) => select.user.user)
 
-    
-    
+    useEffect(() => {
+        const userInfo = JSON.parse(localStorage.getItem("userData"))
+        if (userInfo) {
+            dispatch(setUser(userInfo))
+        }
+    }, [dispatch])
+
+    let gravatarUrl = "";
+
+    if (user && user.email) {
+        gravatarUrl = `https://www.gravatar.com/avatar/${md5(user.email)}`;
+    }
 
     return (
         <div>
@@ -60,11 +74,28 @@ export default function Header() {
                         {/* <NavLink to={"/pricing"} className="text-[#737373] font-bold" >Pricing</NavLink> */}
                         <NavLink to={"/team"} className="text-[#737373] font-bold" >Team</NavLink>
                     </div>
+
                     <div className="flex gap-2 font-bold mobile:mt-0 mobile:mx-auto">
-                        <BiUserCircle className="mt-1 cursor-pointer mobile:hidden" />
-                        <Link to="/login" className="cursor-pointer mobile:hidden">Login</Link>
-                        <Link to="/signup" className="cursor-pointer mobile:hidden">/ Register </Link>
-                        <BsSearch className="mt-1" />
+                        <div className="flex gap-4">
+                            {user ? (
+                                <div className="flex gap-2 items-center">
+                                    <img
+                                        className="w-8 h-8 rounded-full"
+                                        src={gravatarUrl}
+                                        alt="User"
+                                    />
+                                    <p className="text-[#757575] mx-4">{user.name}</p>
+                                </div>
+                            ) : (
+                                <div className="flex gap-2">
+                                    <BiUserCircle className="mt-1 cursor-pointer mobile:hidden" />
+                                    <Link to="/login" className="cursor-pointer mobile:hidden">Login</Link>
+                                    <Link to="/signup" className="cursor-pointer mobile:hidden">/ Register</Link>
+                                </div>
+                            )}
+                            <BsSearch className="mt-1" />
+                            {/* ... diğer ikonlar */}
+                        </div>
                         <div className="flex cursor-pointer">
                             <AiOutlineShoppingCart className="mt-1 cursor-pointer" />
                             <span className="mt-1">1</span>

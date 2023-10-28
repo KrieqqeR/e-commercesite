@@ -9,9 +9,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
+import { useEffect } from 'react';
 
 export default function LoginPage() {
-
 
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onChange" });
     let [loading, setLoading] = useState(false);
@@ -21,6 +21,7 @@ export default function LoginPage() {
     const onSubmit = (data) => {
         setLoading(true);
 
+
         const onSubmitForm = {
             email: data.email,
             password: data.password
@@ -28,11 +29,12 @@ export default function LoginPage() {
 
         api.post("/login", onSubmitForm)
             .then((response) => {
-                const { user, token } = response.data;
-                dispatch(setUser({ user, token }));
-                localStorage.setItem("token", token);
+                const userData = response.data
+                localStorage.setItem("token", userData.token);
+                localStorage.setItem("userData", JSON.stringify(userData));
+                dispatch(setUser(userData));
                 toast.success("Login successful");
-                console.log("Login success")
+
                 setTimeout(() => {
                     setLoading(true);
                     history.push({
@@ -49,6 +51,15 @@ export default function LoginPage() {
                 setLoading(false);
             })
     }
+
+
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData) {
+            dispatch(setUser(userData));
+        }
+    }, []);
 
 
     return (
