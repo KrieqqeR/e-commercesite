@@ -8,6 +8,7 @@ import Team from './pages/Team';
 import Contact from './pages/Contact';
 import Pricing from './pages/Pricing';
 import FormPage from './components/FormPage';
+import LoginPage from './components/LoginPage';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
           <Route path="/contact" component={Contact} />
           <Route path="/pricing" component={Pricing} />
           <Route path="/signup" component={FormPage}/>
+          <Route path="/login" component={LoginPage}/>
         </Switch>
       </Router>
     </div>
