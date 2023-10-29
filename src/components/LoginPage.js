@@ -11,6 +11,7 @@ import { useHistory } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect } from 'react';
 import axios from 'axios';
+import Footer from "../layouts/Footer"
 
 export default function LoginPage() {
 
@@ -56,29 +57,27 @@ export default function LoginPage() {
 
 
     useEffect(() => {
-        const userData = JSON.parse(localStorage.getItem("userData"));
-        
-        if (userData) {
-            dispatch(setUser(userData));
-        }
 
         const token = localStorage.getItem("token");
-        if(token){
+        if (token) {
             axios.defaults.headers.common["Authorization"] = token;
+            console.log("Success token yetkili... ")
         }
-        axios.get("/verify")
-        .then((response)=>{
-            const user = response.data;
-            dispatch({type:"SET_USER",user})
-            localStorage.setItem("token",token);
-            axios.defaults.headers.common["Authorization"] = token;
-            console.log("Success token yetkili ... ")
-        })
-        .catch((error)=>{
-        localStorage.removeItem('token');
-        delete axios.defaults.headers.common["Authorization"];
-        console.log("Error token yetkilendirilemedi:" , error)
-        })
+        api.get("/verify")
+            .then((response) => {
+                console.log("Success token yetkili... ")
+                const user = response.data;
+                dispatch({ type: "SET_USER", user })
+                const newToken = response.headers.authorization
+                localStorage.setItem("token", newToken);
+                axios.defaults.headers.common["Authorization"] = newToken;
+                
+            })
+            .catch((error) => {
+                localStorage.removeItem('token');
+                delete axios.defaults.headers.common["Authorization"];
+                console.log("Error token yetkilendirilemedi:", error)
+            })
 
 
     }, [dispatch]);
@@ -89,6 +88,7 @@ export default function LoginPage() {
             <Header />
 
             <div className='pt-[2rem] '>
+                <h1 className='text-blue-900 font-bold text-[3rem] text-center my-20'>WELCOME TO THE LOGIN PAGE</h1>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="w-full max-w-lg mobile:px-16 mx-auto"
@@ -164,6 +164,7 @@ export default function LoginPage() {
                 </form>
                 <ToastContainer />
             </div>
+            <Footer/>
         </div>
     );
 }
