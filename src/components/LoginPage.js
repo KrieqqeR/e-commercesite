@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
 import ClipLoader from "react-spinners/ClipLoader";
 import { useEffect } from 'react';
+import axios from 'axios';
 
 export default function LoginPage() {
 
@@ -56,10 +57,31 @@ export default function LoginPage() {
 
     useEffect(() => {
         const userData = JSON.parse(localStorage.getItem("userData"));
+        
         if (userData) {
             dispatch(setUser(userData));
         }
-    }, []);
+
+        const token = localStorage.getItem("token");
+        if(token){
+            axios.defaults.headers.common["Authorization"] = token;
+        }
+        axios.get("/verify")
+        .then((response)=>{
+            const user = response.data;
+            dispatch({type:"SET_USER",user})
+            localStorage.setItem("token",token);
+            axios.defaults.headers.common["Authorization"] = token;
+            console.log("Success token yetkili ... ")
+        })
+        .catch((error)=>{
+        localStorage.removeItem('token');
+        delete axios.defaults.headers.common["Authorization"];
+        console.log("Error token yetkilendirilemedi:" , error)
+        })
+
+
+    }, [dispatch]);
 
 
     return (
