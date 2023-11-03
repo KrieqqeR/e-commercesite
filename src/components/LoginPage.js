@@ -33,7 +33,7 @@ export default function LoginPage() {
             .then((response) => {
                 const userData = response.data
                 localStorage.setItem("token", userData.token);
-                localStorage.setItem("userData", JSON.stringify(userData));
+                //localStorage.setItem("userData", JSON.stringify(userData));
                 dispatch(setUser(userData));
                 toast.success("Login successful");
 
@@ -56,31 +56,7 @@ export default function LoginPage() {
 
 
 
-    useEffect(() => {
 
-        const token = localStorage.getItem("token");
-        if (token) {
-            axios.defaults.headers.common["Authorization"] = token;
-            console.log("Success token yetkili... ")
-        }
-        api.get("/verify")
-            .then((response) => {
-                console.log("Success token yetkili... ")
-                const user = response.data;
-                dispatch({ type: "SET_USER", user })
-                const newToken = response.headers.authorization
-                localStorage.setItem("token", newToken);
-                axios.defaults.headers.common["Authorization"] = newToken;
-                
-            })
-            .catch((error) => {
-                localStorage.removeItem('token');
-                delete axios.defaults.headers.common["Authorization"];
-                console.log("Error token yetkilendirilemedi:", error)
-            })
-
-
-    }, []);
 
 
     return (
