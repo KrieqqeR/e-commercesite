@@ -25,29 +25,33 @@ function App() {
 
 
   useEffect(() => {
-
     const token = localStorage.getItem("token");
-
+    console.log("Current Token:", token);
+  
     if (token) {
       axios.defaults.headers.common["Authorization"] = token;
-      console.log("Success token yetkili... ")
+      console.log("Token mevcut, otomatik giriş yapılıyor ...");
+  
+      api.get("/verify")
+        .then((response) => {
+          const user = response.data;
+          dispatch({ type: "SET_USER", user });
+          console.log("Oturum Açıldı...");
+  
+          const newToken = response.headers.authorization;
+          console.log("New Token:", newToken);
+  
+          // Mevcut tokeni yeni token ile güncelleyin
+          localStorage.setItem("token", newToken);
+  
+          axios.defaults.headers.common["Authorization"] = newToken;
+        })
+        .catch((error) => {
+          localStorage.removeItem('token');
+          delete axios.defaults.headers.common["Authorization"];
+          console.log("Error token yetkilendirilemedi:", error.message);
+        });
     }
-    api.get("/verify")
-      .then((response) => {
-        const user = response.data;
-        dispatch({ type: "SET_USER", user })
-        console.log("Success token yetkili... ")
-        const newToken = response.headers.authorization
-        localStorage.setItem("token", newToken);
-        axios.defaults.headers.common["Authorization"] = newToken;
-
-      })
-      .catch((error) => {
-       localStorage.removeItem('token');
-        delete axios.defaults.headers.common["Authorization"];
-        console.log("Error token yetkilendirilemedi:", error.message)
-      })
-
   }, []);
 
   return (

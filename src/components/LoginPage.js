@@ -22,13 +22,10 @@ export default function LoginPage() {
 
     const onSubmit = (data) => {
         setLoading(true);
-
-
         const onSubmitForm = {
             email: data.email,
             password: data.password
         };
-
         api.post("/login", onSubmitForm)
             .then((response) => {
                 const userData = response.data
@@ -54,7 +51,7 @@ export default function LoginPage() {
             })
     }
 
-
+    
 
 
 
