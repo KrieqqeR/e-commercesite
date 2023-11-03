@@ -29,7 +29,7 @@ export default function FormPage() {
 
     useEffect(() => {
         roles.length === 0 && dispatch(fetchRoles());
-    }, [dispatch, roles.length]);
+    }, []);
 
     const onSubmit = (data) => {
         const formData = {};

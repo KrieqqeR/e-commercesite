@@ -80,7 +80,7 @@ export default function LoginPage() {
             })
 
 
-    }, [dispatch]);
+    }, []);
 
 
     return (
