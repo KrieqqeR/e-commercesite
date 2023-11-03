@@ -28,20 +28,25 @@ function App() {
     const token = localStorage.getItem("token");
     console.log("Current Token:", token);
   
-    if (token) {
+    if (token !== null) {
       axios.defaults.headers.common["Authorization"] = token;
       console.log("Token mevcut, otomatik giriş yapılıyor ...");
   
-      api.get("/verify")
+      api.get("/verify",{
+        headers: { 
+          'Authorization': token, 
+          'Content-Type': 'application/json'
+        },
+      })
         .then((response) => {
           const user = response.data;
           dispatch({ type: "SET_USER", user });
-          console.log("Oturum Açıldı...");
+          console.log("Oturum Açıldı..." , response);
   
-          const newToken = response.headers.authorization;
+          const newToken = response.data.token;
           console.log("New Token:", newToken);
   
-          // Mevcut tokeni yeni token ile güncelleyin
+          
           localStorage.setItem("token", newToken);
   
           axios.defaults.headers.common["Authorization"] = newToken;
