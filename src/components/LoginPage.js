@@ -30,7 +30,7 @@ export default function LoginPage() {
             .then((response) => {
                 const userData = response.data
                 localStorage.setItem("token", userData.token);
-                //localStorage.setItem("userData", JSON.stringify(userData));
+                //sessionStorage.setItem("userData", JSON.stringify(userData));
                 dispatch(setUser(userData));
                 toast.success("Login successful");
 
@@ -50,10 +50,6 @@ export default function LoginPage() {
                 setLoading(false);
             })
     }
-
-    
-
-
 
 
     return (

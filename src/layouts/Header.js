@@ -14,20 +14,36 @@ import md5 from "md5";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setUser } from "../store/actions/userActions"
+import { api } from "../api/api";
 
 export default function Header() {
     const dispatch = useDispatch();
     const user = useSelector((select) => select.user.user)
-
+   
     useEffect(() => {
-        const userInfo = JSON.parse(localStorage.getItem("userData"))
-        if (userInfo) {
-            dispatch(setUser(userInfo))
+        // Sayfa yüklendiğinde, localStorage'dan token'ı kontrol et
+        const token = localStorage.getItem('token');
+        if (token) {
+            // Token varsa, kullanıcı bilgilerini almak için bir API çağrısı yapabilirsiniz
+            api.get('/verify', {
+                headers: {
+                    Authorization: token,
+                },
+            })
+                .then((response) => {
+                    const userData = response.data;
+                    // Kullanıcı bilgilerini Redux store'a kaydedin
+                    console.log(userData , " USER DATA")
+                    dispatch(setUser(userData));
+                })
+                .catch((error) => {
+                    console.error('Kullanıcı bilgileri alınamadı', error);
+                });
         }
-    }, [dispatch])
-
+    }, []);
+    
     let gravatarUrl = "";
-
+    
     if (user && user.email) {
         gravatarUrl = `https://www.gravatar.com/avatar/${md5(user.email)}`;
     }

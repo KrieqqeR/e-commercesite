@@ -3,15 +3,15 @@ import {
 } from "../actions/userActions";
 
 const initialState = {
-  user:null
+  user: null
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       return {
-        ...action.payload,
-        user:action.payload
+        ...state, // Önceki state'i koru
+        user: action.payload // Yalnızca kullanıcıyı güncelle
       };
     default:
       return state;

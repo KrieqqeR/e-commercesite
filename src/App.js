@@ -26,7 +26,6 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("Current Token:", token);
   
     if (token !== null) {
       axios.defaults.headers.common["Authorization"] = token;
@@ -41,12 +40,9 @@ function App() {
         .then((response) => {
           const user = response.data;
           dispatch({ type: "SET_USER", user });
-          console.log("Oturum Açıldı..." , response);
-  
-          const newToken = response.data.token;
-          console.log("New Token:", newToken);
-  
           
+          const newToken = response.data.token;
+  
           localStorage.setItem("token", newToken);
   
           axios.defaults.headers.common["Authorization"] = newToken;
