@@ -21,26 +21,29 @@ export default function Header() {
     const user = useSelector((select) => select.user.user)
    
     useEffect(() => {
-        // Sayfa yüklendiğinde, localStorage'dan token'ı kontrol et
-        const token = localStorage.getItem('token');
-        if (token) {
-            // Token varsa, kullanıcı bilgilerini almak için bir API çağrısı yapabilirsiniz
-            api.get('/verify', {
+        const fetchData = async () => {
+          try {
+            const token = localStorage.getItem('token');
+            if (token) {
+              const response = await api.get('/verify', {
                 headers: {
-                    Authorization: token,
+                  Authorization: token,
                 },
-            })
-                .then((response) => {
-                    const userData = response.data;
-                    // Kullanıcı bilgilerini Redux store'a kaydedin
-                    console.log(userData , " USER DATA")
-                    dispatch(setUser(userData));
-                })
-                .catch((error) => {
-                    console.error('Kullanıcı bilgileri alınamadı', error);
-                });
-        }
-    }, []);
+              });
+              
+              const userData = response.data;
+              
+              console.log(userData, " USER DATA");
+              dispatch(setUser(userData));
+              
+            }
+          } catch (error) {
+            console.error('Kullanıcı bilgileri alınamadı', error);
+          }
+        };
+      
+        fetchData();
+      }, []);
     
     let gravatarUrl = "";
     
