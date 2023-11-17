@@ -10,8 +10,11 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       return {
-        ...state, // Önceki state'i koru
-        user: action.payload // Yalnızca kullanıcıyı güncelle
+        ...state,
+        user: {
+          ...state.user,
+          ...action.payload
+        }
       };
     default:
       return state;
