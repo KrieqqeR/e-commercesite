@@ -7,7 +7,7 @@ export default function AboutPageVideo() {
         <div className="my-40 relative">
             <video
                 className="w-[62rem] h-[34rem] max-w-full flex mx-auto justify-center border border-gray-200 rounded-xl"
-                autoPlay={true} // Otomatik oynatma açık
+                autoPlay={false} // Otomatik oynatma açık
                 muted={false}   // Ses açık
                 controls
             >
