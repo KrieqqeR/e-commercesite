@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ShowingAllResult() {
     return (
-        <div className='w-[70rem] mobile:w-[20rem] mobile:flex-col mobile:gap-y-4 mx-auto flex-wrap flex justify-between items-center mt-10'>
+        <div className='w-[70rem] mobile:w-[20rem] mobile:flex-col mobile:gap-y-4 mx-auto flex-wrap flex justify-between items-center mt-40'>
             <h1 className='text-[#737373] font-semibold'>Showing all 12 result</h1>
             <div className='flex items-center gap-2'>
                 <h1 className='text-[#737373] font-semibold'>Views:</h1>
