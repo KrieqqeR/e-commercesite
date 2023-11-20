@@ -92,10 +92,11 @@ export default function Header() {
                         <div
                             onMouseEnter={() => setDropDown(true)}
                             onMouseLeave={() => setDropDown(false)}
-                        >
-                            <span className="text-[#737373] text-center font-bold cursor-pointer">
-                                Products <span className="text-[#737373] font-bold">↓</span>
-                            </span>
+                        ><NavLink to={"/products"}>
+                                <span className="text-[#737373] text-center font-bold cursor-pointer">
+                                    Products <span className="text-[#737373] font-bold">↓</span>
+                                </span>
+                            </NavLink>
                             {dropDown && (
                                 <div>
                                     <div className=" bg-white text-red-600 font-bold p-2 mt-2 shadow-md">
