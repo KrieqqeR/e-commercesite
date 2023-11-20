@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsInstagram, BsTelephone, BsSearch } from "react-icons/bs";
 import {
     AiOutlineMail,
@@ -17,36 +17,39 @@ import { setUser } from "../store/actions/userActions"
 import { api } from "../api/api";
 
 export default function Header() {
+    const [dropDown, setDropDown] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector((select) => select.user.user)
-   
+    const productList = useSelector((state) => state.global?.categories[0]);
+    const femaleProducts = productList?.filter(product => product.code?.includes("k:"));
+    const maleProducts = productList?.filter(product => product.code?.includes("e:"));
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const token = localStorage.getItem('token');
-            if (token) {
-              const response = await api.get('/verify', {
-                headers: {
-                  Authorization: token,
-                },
-              });
-              
-              const userData = response.data;
-              
-              console.log(userData, " USER DATA");
-              dispatch(setUser(userData));
-              
+            try {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    const response = await api.get('/verify', {
+                        headers: {
+                            Authorization: token,
+                        },
+                    });
+
+                    const userData = response.data;
+
+                    console.log(userData, " USER DATA");
+                    dispatch(setUser(userData));
+
+                }
+            } catch (error) {
+                console.error('Kullanıcı bilgileri alınamadı', error);
             }
-          } catch (error) {
-            console.error('Kullanıcı bilgileri alınamadı', error);
-          }
         };
-      
+
         fetchData();
-      }, []);
-    
+    }, []);
+
     let gravatarUrl = "";
-    
+
     if (user && user.email) {
         gravatarUrl = `https://www.gravatar.com/avatar/${md5(user.email)}`;
     }
@@ -86,7 +89,46 @@ export default function Header() {
                     <h1 className="text-[1.5rem] font-bold text-[#252B42] mobile:mx-auto">Bandage</h1>
                     <div className="flex mobile:flex-col mobile:mr-0 mobile:mt-20 gap-5 mr-80 mt-1">
                         <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
-                        <NavLink to={"/products"} className="text-[#737373] font-bold" >Products</NavLink>
+                        <div
+                            onMouseEnter={() => setDropDown(true)}
+                            onMouseLeave={() => setDropDown(false)}
+                        >
+                            <span className="text-[#737373] text-center font-bold cursor-pointer">
+                                Products <span className="text-[#737373] font-bold">↓</span>
+                            </span>
+                            {dropDown && (
+                                <div>
+                                    <div className=" bg-white text-red-600 font-bold p-2 mt-2 shadow-md">
+                                        <span className="underline text-[0.8rem] ">KADIN</span>
+                                        {femaleProducts &&
+                                            femaleProducts.map((category, index) => (
+                                                <NavLink
+                                                    key={index}
+                                                    to={`/shopping/:gender/:category`}
+                                                    className="text-[#737373] text-[0.8rem] font-bold block py-2"
+                                                >
+                                                    {category.title}
+                                                </NavLink>
+                                            ))}
+                                    </div>
+                                    <div>
+                                        <div className=" bg-white text-blue-600 font-bold p-2 mt-2 shadow-md">
+                                            <span className="underline text-[0.8rem] ">ERKEK</span>
+                                            {maleProducts &&
+                                                maleProducts.map((category, index) => (
+                                                    <NavLink
+                                                        key={index}
+                                                        to={`/shopping/:gender/:category`}
+                                                        className="text-[#737373] text-[0.8rem]  font-bold block py-2"
+                                                    >
+                                                        {category.title}
+                                                    </NavLink>
+                                                ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                         <NavLink to={"/about"} className="text-[#737373] font-bold" >About</NavLink>
                         <NavLink to={"/contact"} className="text-[#737373] font-bold" >Contact</NavLink>
                         <NavLink to={"/productlistpage"} className="text-[#737373] font-bold" >Pages</NavLink>
@@ -97,7 +139,7 @@ export default function Header() {
                     <div className="flex gap-2 font-bold mobile:mt-0 mobile:mx-auto">
                         <div className="flex gap-4">
                             {user ? (
-                                <div className="flex gap-2 items-center">
+                                <div className="flex gap-2 text-center">
                                     <img
                                         className="w-8 h-8 rounded-full"
                                         src={gravatarUrl}

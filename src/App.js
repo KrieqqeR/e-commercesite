@@ -25,42 +25,42 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-  
+
     if (token !== null) {
       axios.defaults.headers.common["Authorization"] = token;
       console.log("Token mevcut, otomatik giriş yapılıyor ...");
 
 
-      api.get("/categories" , {
-        headers: { 
-          'Authorization': token, 
+      api.get("/categories", {
+        headers: {
+          'Authorization': token,
           'Content-Type': 'application/json'
         },
-      }).then((res)=>{
+      }).then((res) => {
         const categories = res.data;
-        console.log("CATEGORI Basarılır cekıldı: " , categories)
-        dispatch({type:"SET_CATEGORY",payload:categories})
-      }).catch(error =>{
-        console.log("CATEGORIES ERROR : " , error.message)
+        console.log("CATEGORI Basarılır cekıldı: ", categories)
+        dispatch({ type: "SET_CATEGORY", payload: categories })
+      }).catch(error => {
+        console.log("CATEGORIES ERROR : ", error.message)
       })
 
 
 
-  
-      api.get("/verify",{
-        headers: { 
-          'Authorization': token, 
+
+      api.get("/verify", {
+        headers: {
+          'Authorization': token,
           'Content-Type': 'application/json'
         },
       })
         .then((response) => {
           const user = response.data;
           dispatch({ type: "SET_USER", user });
-          
+
           const newToken = response.data.token;
-  
+
           localStorage.setItem("token", newToken);
-  
+
           axios.defaults.headers.common["Authorization"] = newToken;
         })
         .catch((error) => {
