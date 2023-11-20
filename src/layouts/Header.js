@@ -16,6 +16,8 @@ import { useEffect } from "react";
 import { setUser } from "../store/actions/userActions"
 import { api } from "../api/api";
 
+
+
 export default function Header() {
     const [dropDown, setDropDown] = useState(false);
     const dispatch = useDispatch();
@@ -23,6 +25,21 @@ export default function Header() {
     const productList = useSelector((state) => state.global?.categories[0]);
     const femaleProducts = productList?.filter(product => product.code?.includes("k:"));
     const maleProducts = productList?.filter(product => product.code?.includes("e:"));
+
+    console.log("GRAVATA ICIN USER : " ,user)
+
+    const toggleDropDown = () => {
+        setDropDown(!dropDown);
+    };
+
+    const handleNavLinkClick = (e) => {
+        if (e.target.classList.contains('toggle-dropdown')) {
+            toggleDropDown();
+        } else {
+            const pageUrl = '/products';
+        }
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -89,18 +106,17 @@ export default function Header() {
                     <h1 className="text-[1.5rem] font-bold text-[#252B42] mobile:mx-auto">Bandage</h1>
                     <div className="flex mobile:flex-col mobile:mr-0 mobile:mt-20 gap-5 mr-80 mt-1">
                         <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
-                        <div
-                            onMouseEnter={() => setDropDown(true)}
-                            onMouseLeave={() => setDropDown(false)}
-                        ><NavLink to={"/products"}>
+                        <div onClick={handleNavLinkClick}>
+                            <NavLink to="/products">
                                 <span className="text-[#737373] text-center font-bold cursor-pointer">
-                                    Products <span className="text-[#737373] font-bold">↓</span>
+                                    Products
                                 </span>
                             </NavLink>
+                            <span className="text-[#737373] font-bold toggle-dropdown cursor-pointer">{"                          "}↓</span>
                             {dropDown && (
                                 <div>
-                                    <div className=" bg-white text-red-600 font-bold p-2 mt-2 shadow-md">
-                                        <span className="underline text-[0.8rem] ">KADIN</span>
+                                    <div className="bg-white text-red-600 font-bold p-2 mt-2 shadow-md">
+                                        <span className="underline text-[0.8rem]">KADIN</span>
                                         {femaleProducts &&
                                             femaleProducts.map((category, index) => (
                                                 <NavLink
@@ -113,8 +129,8 @@ export default function Header() {
                                             ))}
                                     </div>
                                     <div>
-                                        <div className=" bg-white text-blue-600 font-bold p-2 mt-2 shadow-md">
-                                            <span className="underline text-[0.8rem] ">ERKEK</span>
+                                        <div className="bg-white text-blue-600 font-bold p-2 mt-2 shadow-md">
+                                            <span className="underline text-[0.8rem]">ERKEK</span>
                                             {maleProducts &&
                                                 maleProducts.map((category, index) => (
                                                     <NavLink
