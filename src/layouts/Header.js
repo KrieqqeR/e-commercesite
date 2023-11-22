@@ -135,7 +135,7 @@ export default function Header() {
                                                 maleProducts.map((category, index) => (
                                                     <NavLink
                                                         key={index}
-                                                        to={`/shopping/:gender/:category`}
+                                                        to={`/shopping/${category.gender ==="k" ? "kadın" : "erkek"}/${category.title.toLowerCase()}`}
                                                         className="text-[#737373] text-[0.8rem]  font-bold block py-2"
                                                     >
                                                         {category.title}
