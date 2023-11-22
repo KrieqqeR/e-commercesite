@@ -1,9 +1,10 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 import globalReducer from "./globalReducer";
 import userReducer from "./userReducer";
 import productReducer from "./productReducer";
 import shoppingCardReducer from "./shoppingCardReducer";
 import storeReducer from "./storeReducer";
+import loadingReducer from "./loadingReducer"
 
 
 const reducers = combineReducers({
@@ -11,7 +12,8 @@ const reducers = combineReducers({
    user: userReducer,
    product: productReducer,
    shopping: shoppingCardReducer,
-   store: storeReducer
+   store: storeReducer,
+   loading: loadingReducer
 });
 export default reducers;
 

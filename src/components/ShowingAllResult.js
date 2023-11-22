@@ -1,44 +1,69 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { api } from '../api/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProductList } from '../store/actions/productActions';
+import ClipLoader from "react-spinners/ClipLoader";
+import { setLoading } from '../store/actions/loadingAction';
 
 export default function ShowingAllResult() {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [resultNumber, setResultsNumber] = useState("")
+    const dispatch = useDispatch();
+    const loading = useSelector((select) => select.loading.boolean)
+
+    const onSubmit = data => {
+        console.log(data);
+        dispatch(setLoading(true))
+        setTimeout(() => {
+            api.get(`products/?filter=${data.filter}&sort=${data.orderBy}`)
+                .then((response) => {
+                    console.log("REPONSE DATA , ", response)
+                    setResultsNumber(response.data.products.length)
+                    dispatch(setProductList(response.data.products))
+                    dispatch(setLoading(false));
+                })
+        }, 1000)
+
+    }
+
+
+
+
+
     return (
-        <div className='w-[70rem] mobile:w-[20rem] mobile:flex-col mobile:gap-y-4 mx-auto flex-wrap flex justify-between items-center mt-40'>
-            <h1 className='text-[#737373] font-semibold'>Showing all 12 result</h1>
-            <div className='flex items-center gap-2'>
-                <h1 className='text-[#737373] font-semibold'>Views:</h1>
-                <img
-                    src="https://file.rendit.io/n/vFXyEvdD2BbeovWbmqaU.svg"
-                    id="Icon"
-                    className="w-6 h-6 cursor-pointer"
-                />
-                <img
-                    src="https://file.rendit.io/n/qkwL8mD9GnzPSuJc0JQf.svg"
-                    id="Icon"
-                    className="w-7 h-7  cursor-pointer"
-                />
-            </div>
-            <div className='flex mobile:ml-10 items-center gap-2 pr-24 '>
-                <div
-                    id="OptionRoot"
-                    className="border-solid border-[#dddddd] overflow-hidden bg-[#f9f9f9] flex flex-row gap-1 w-full h-12 items-center px-4 border rounded text-center cursor-pointer"
-                >
+        <div>
+            <div className='w-[70rem] mobile:w-[20rem] mobile:flex-col mobile:gap-y-4 mx-auto flex-wrap flex justify-between items-center mt-40'>
+                <h1 className='text-[#737373] font-semibold'>Showing all {resultNumber} results</h1>
+                <div className='flex mobile:ml-10 items-center gap-2 pr-24 '>
                     <div
-                
-                        id="Dropdown"
-                        className=" tracking-[0.2] leading-[28px] text-[#737373] font-semibold text-center cursor-pointer"
-                        
+                        id="OptionRoot"
+                        className=" overflow-hidden  flex flex-row gap-1 w-full h-12 items-center px-4 rounded text-center cursor-pointer"
                     >
-                        Popularity
+                        <form className=" tracking-[0.2] flex gap-2 leading-[28px] text-white font-semibold text-center cursor-pointer" onSubmit={handleSubmit(onSubmit)}>
+                            <select className='py-[0.625rem] px-[1.25rem]' {...register("orderBy")}>
+                                <option value="price:desc">High price to low</option>
+                                <option value="price:asc"> Low price to high</option>
+                                <option value="rating:desc"> Rating by high to low</option>
+                                <option value="rating:asc"> Rating by low to high</option>
+                            </select>
+                            <input className='py-[0.625rem] px-[1.25rem] ' type="text" placeholder="Filter" {...register("filter", {})} />
+                            <button type='submit' className='py-[0.625rem] px-[1.25rem] w-[5.875rem] bg-[#23A6F0] hover:bg-blue-400 text-[#FFFFFF] rounded-[0.3125rem] '>
+                                Filter
+                            </button>
+
+                        </form>
+
                     </div>
-                    <img
-                        src="https://file.rendit.io/n/QlM8sZOD700CY5MYBJZA.svg"
-                        className="w-3 mobile:h-8 shrink-0 text-center cursor-pointer"
-                    />
                 </div>
-                <button className='py-[0.625rem] px-[1.25rem] w-[5.875rem] bg-[#23A6F0] text-[#FFFFFF] rounded-[0.3125rem] '>
-                    Filter
-                </button>
             </div>
-        </div>
+            <div className='flex justify-center mt-20'>
+                <ClipLoader
+                    size={30}
+                    color={"#123abc"}
+                    loading={loading}
+                />
+            </div>
+        </div >
     )
 }

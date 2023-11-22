@@ -36,7 +36,7 @@ export default function Header() {
         if (e.target.classList.contains('toggle-dropdown')) {
             toggleDropDown();
         } else {
-            const pageUrl = '/products';
+            const pageUrl = '/shopping';
         }
     };
 
@@ -107,7 +107,7 @@ export default function Header() {
                     <div className="flex mobile:flex-col mobile:mr-0 mobile:mt-20 gap-5 mr-80 mt-1">
                         <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
                         <div onClick={handleNavLinkClick}>
-                            <NavLink to="/products">
+                            <NavLink to="/shopping">
                                 <span className="text-[#737373] text-center font-bold cursor-pointer">
                                     Products
                                 </span>

@@ -18,12 +18,16 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useEffect } from 'react';
 import axios from 'axios';
+import { setProductList } from './store/actions/productActions';
+import { setLoading } from './store/actions/loadingAction';
 
 function App() {
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
+    dispatch(setLoading(true))
     const token = localStorage.getItem("token");
 
     if (token !== null) {
@@ -44,7 +48,14 @@ function App() {
         console.log("CATEGORIES ERROR : ", error.message)
       })
 
-
+      setTimeout(() => {
+      api.get(`products/`)
+                .then((response) => {
+                    console.log("REPONSE DATA , ", response)
+                    dispatch(setProductList(response.data.products))
+                    dispatch(setLoading(false));
+                })
+              }, 1000)
 
 
       api.get("/verify", {
@@ -77,7 +88,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/productlistpage" component={Productpage} />
-          <Route path="/products" component={ProductListPage} />
+          <Route path="/shopping" component={ProductListPage} />
           <Route path="/about" component={About} />
           <Route path="/team" component={Team} />
           <Route path="/contact" component={Contact} />
