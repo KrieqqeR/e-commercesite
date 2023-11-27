@@ -11,8 +11,8 @@ import FormPage from './components/FormPage';
 import LoginPage from './components/LoginPage';
 
 import { api } from "../src/api/api"
-import { useDispatch } from 'react-redux';
-import { setUser } from "../src/store/actions/userActions"
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserByVerify, setUser } from "../src/store/actions/userActions"
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,6 +24,9 @@ import { setLoading } from './store/actions/loadingAction';
 function App() {
 
   const dispatch = useDispatch();
+  const user = useSelector((store) =>store.user)
+
+console.log("APP JS USER " , user)
 
   useEffect(() => {
     
@@ -49,6 +52,8 @@ function App() {
       })
 
       setTimeout(() => {
+
+      // todo: thunk action ile yapılacak
       api.get(`products/`)
                 .then((response) => {
                     console.log("REPONSE DATA , ", response)
@@ -57,28 +62,9 @@ function App() {
                 })
               }, 1000)
 
-
-      api.get("/verify", {
-        headers: {
-          'Authorization': token,
-          'Content-Type': 'application/json'
-        },
-      })
-        .then((response) => {
-          const user = response.data;
-          dispatch({ type: "SET_USER", user });
-
-          const newToken = response.data.token;
-
-          localStorage.setItem("token", newToken);
-
-          axios.defaults.headers.common["Authorization"] = newToken;
-        })
-        .catch((error) => {
-          localStorage.removeItem('token');
-          delete axios.defaults.headers.common["Authorization"];
-          console.log("Error token yetkilendirilemedi:", error.message);
-        });
+      if(token){
+        dispatch(getUserByVerify())
+      }
     }
   }, []);
 
