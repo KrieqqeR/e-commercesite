@@ -51,16 +51,7 @@ console.log("APP JS USER " , user)
         console.log("CATEGORIES ERROR : ", error.message)
       })
 
-      setTimeout(() => {
-
-      // todo: thunk action ile yapılacak
-      api.get(`products/`)
-                .then((response) => {
-                    console.log("REPONSE DATA , ", response)
-                    dispatch(setProductList(response.data.products))
-                    dispatch(setLoading(false));
-                })
-              }, 1000)
+      
 
       if(token){
         dispatch(getUserByVerify())

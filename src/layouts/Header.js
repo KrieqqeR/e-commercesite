@@ -12,9 +12,6 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from 'react-router-dom';
 import md5 from "md5";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { setUser } from "../store/actions/userActions"
-import { api } from "../api/api";
 
 
 
@@ -39,36 +36,6 @@ export default function Header() {
             const pageUrl = '/shopping';
         }
     };
-
-
-    
-
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const token = localStorage.getItem('token');
-    //             if (token) {
-    //                 // todo: user reducer dan data çekilecek
-    //                 const response = await api.get('/verify', {
-    //                     headers: {
-    //                         Authorization: token,
-    //                     },
-    //                 });
-
-    //                 const userData = response.data;
-
-    //                 console.log(userData, " USER DATA");
-    //                 dispatch(setUser(userData));
-
-    //             }
-    //         } catch (error) {
-    //             console.error('Kullanıcı bilgileri alınamadı', error);
-    //         }
-    //     };
-
-    //     fetchData();
-    // }, []);
 
     let gravatarUrl = "";
 
