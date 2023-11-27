@@ -1,6 +1,7 @@
 import React from 'react'
 import data from '../data/Data'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function ProductListPageShopTopCards() {
   const productList = useSelector((state) => state.global?.categories[0]);
@@ -12,10 +13,12 @@ export default function ProductListPageShopTopCards() {
   return (
     <div className='w-[70rem] mobile:flex-wrap mobile:w-[20rem] mx-auto flex mt-8 gap-4'>
       {sortedProductList.map((eleman, index) => (
-        <div key={index} className='w-[12rem]  mobile:min-w-max mobile:my-4 mobile:mx-auto h-[13rem] relative'>
-          <img className='h-[20rem] ' src={eleman.img} alt='resim' />
-          <h1 className='absolute bottom left-20 text-black font-bold'>{eleman.title}</h1>
-        </div>
+        <Link key={index} to={`/${eleman.gender}/${eleman.title.toLowerCase()}`}>
+          <div key={index} className='w-[12rem]  mobile:min-w-max mobile:my-4 mobile:mx-auto h-[13rem] relative'>
+            <img className='h-[20rem] ' src={eleman.img} alt='resim' />
+            <h1 className='absolute bottom left-20 text-black font-bold'>{eleman.title}</h1>
+          </div>
+        </Link>
       ))}
     </div>
   )
