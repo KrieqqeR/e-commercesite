@@ -35,8 +35,6 @@ export default function Header() {
     const handleNavLinkClick = (e) => {
         if (e.target.classList.contains('toggle-dropdown')) {
             toggleDropDown();
-        } else {
-            const pageUrl = '/shopping';
         }
     };
 
@@ -44,7 +42,7 @@ export default function Header() {
         console.log("NE VAR BU DATA  , ", data);
         dispatch(setLoading(true))
         setTimeout(() => {
-            api.get(`products?category=${data.id}`)
+            api.get(`products?filter=${data.gender === "k" ? "kadın" : "erkek"}&category=${data.id}`)
                 .then((response) => {
                     console.log("REPONSE DATA , ", response)
                     dispatch(setProductList(response.data.products))
@@ -111,7 +109,7 @@ export default function Header() {
                                                 <NavLink
                                                     key={index}
                                                     onClick={() => dropDownHandler(category)}
-                                                    to={`products?category=${category.id}`}
+                                                    to={`products?filter=${category.gender === "k" ? "kadın" : "erkek"}&category=${category.id}`}
                                                     className="text-[#737373] text-center text-[0.8rem] font-bold block py-2"
 
                                                 >
@@ -127,7 +125,7 @@ export default function Header() {
                                                     <NavLink
                                                         key={index}
                                                         onClick={() => dropDownHandler(category)}
-                                                        to={`products?category=${category.id}`}
+                                                        to={`products?filter=${category.gender === "k" ? "kadın" : "erkek"}&category=${category.id}`}
                                                         className="text-[#737373] text-[0.8rem] text-center font-bold block py-2"
 
                                                     >
