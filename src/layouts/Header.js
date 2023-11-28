@@ -12,6 +12,9 @@ import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { Link } from 'react-router-dom';
 import md5 from "md5";
 import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "../store/actions/loadingAction";
+import { setProductList } from "../store/actions/productActions";
+import { api } from "../api/api";
 
 
 
@@ -23,7 +26,7 @@ export default function Header() {
     const femaleProducts = productList?.filter(product => product.code?.includes("k:"));
     const maleProducts = productList?.filter(product => product.code?.includes("e:"));
 
-    console.log("GRAVATA ICIN USER : " ,user)
+    console.log("GRAVATA ICIN USER : ", user)
 
     const toggleDropDown = () => {
         setDropDown(!dropDown);
@@ -36,6 +39,20 @@ export default function Header() {
             const pageUrl = '/shopping';
         }
     };
+
+    const dropDownHandler = (data) => {
+        console.log("NE VAR BU DATA  , ", data);
+        dispatch(setLoading(true))
+        setTimeout(() => {
+            api.get(`products?category=${data.id}`)
+                .then((response) => {
+                    console.log("REPONSE DATA , ", response)
+                    dispatch(setProductList(response.data.products))
+                    dispatch(setLoading(false));
+                })
+        }, 1000)
+    }
+
 
     let gravatarUrl = "";
 
@@ -78,8 +95,8 @@ export default function Header() {
                     <h1 className="text-[1.5rem] font-bold text-[#252B42] mobile:mx-auto">Bandage</h1>
                     <div className="flex mobile:flex-col mobile:mr-0 mobile:mt-20 gap-5 mr-80 mt-1">
                         <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
-                        <div className={dropDown ? "w-48 text-center" : "w-20"}  onClick={handleNavLinkClick}>
-                            <NavLink to="/shopping" >
+                        <div className={dropDown ? "w-48 text-center" : "w-20"} onClick={handleNavLinkClick}>
+                            <NavLink to="/products" >
                                 <span className="text-[#737373]  text-center font-bold cursor-pointer">
                                     Products
                                 </span>
@@ -93,8 +110,10 @@ export default function Header() {
                                             femaleProducts.map((category, index) => (
                                                 <NavLink
                                                     key={index}
-                                                    to={`/shopping/${category.gender ==="k" ? "kadın" : "erkek"}/${category.title.toLowerCase()}`}
+                                                    onClick={() => dropDownHandler(category)}
+                                                    to={`products?category=${category.id}`}
                                                     className="text-[#737373] text-center text-[0.8rem] font-bold block py-2"
+
                                                 >
                                                     {category.title}
                                                 </NavLink>
@@ -107,8 +126,10 @@ export default function Header() {
                                                 maleProducts.map((category, index) => (
                                                     <NavLink
                                                         key={index}
-                                                        to={`/shopping/${category.gender ==="k" ? "kadın" : "erkek"}/${category.title.toLowerCase()}`}
+                                                        onClick={() => dropDownHandler(category)}
+                                                        to={`products?category=${category.id}`}
                                                         className="text-[#737373] text-[0.8rem] text-center font-bold block py-2"
+
                                                     >
                                                         {category.title}
                                                     </NavLink>

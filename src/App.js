@@ -65,7 +65,7 @@ console.log("APP JS USER " , user)
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/productlistpage" component={Productpage} />
-          <Route path="/shopping" component={ProductListPage} />
+          <Route path="/products" component={ProductListPage} />
           <Route path="/about" component={About} />
           <Route path="/team" component={Team} />
           <Route path="/contact" component={Contact} />
