@@ -44,7 +44,7 @@ export default function Header() {
     }
 
     return (
-        <div>
+        <div className="relative">
             <div className="bg-[#252B42] mobile:hidden">
                 <div className="flex justify-between items-center h-16 text-white mx-16">
                     {/* NAVBAR SOL ÜST */}
@@ -78,37 +78,37 @@ export default function Header() {
                     <h1 className="text-[1.5rem] font-bold text-[#252B42] mobile:mx-auto">Bandage</h1>
                     <div className="flex mobile:flex-col mobile:mr-0 mobile:mt-20 gap-5 mr-80 mt-1">
                         <NavLink to={"/"} className="text-[#737373] font-bold" >Home</NavLink>
-                        <div onClick={handleNavLinkClick}>
-                            <NavLink to="/shopping">
-                                <span className="text-[#737373] text-center font-bold cursor-pointer">
+                        <div className={dropDown ? "w-48 text-center" : "w-20"}  onClick={handleNavLinkClick}>
+                            <NavLink to="/shopping" >
+                                <span className="text-[#737373]  text-center font-bold cursor-pointer">
                                     Products
                                 </span>
                             </NavLink>
                             <span className="text-[#737373] font-bold toggle-dropdown cursor-pointer">{"                          "}↓</span>
                             {dropDown && (
-                                <div>
-                                    <div className="bg-white text-red-600 font-bold p-2 mt-2 shadow-md">
+                                <div className="absolute opacity-90 z-4 w-48 ">
+                                    <div className="bg-white text-red-600 font-bold text-center p-2 mt-2 shadow-md">
                                         <span className="underline text-[0.8rem]">KADIN</span>
                                         {femaleProducts &&
                                             femaleProducts.map((category, index) => (
                                                 <NavLink
                                                     key={index}
                                                     to={`/shopping/${category.gender ==="k" ? "kadın" : "erkek"}/${category.title.toLowerCase()}`}
-                                                    className="text-[#737373] text-[0.8rem] font-bold block py-2"
+                                                    className="text-[#737373] text-center text-[0.8rem] font-bold block py-2"
                                                 >
                                                     {category.title}
                                                 </NavLink>
                                             ))}
                                     </div>
                                     <div>
-                                        <div className="bg-white text-blue-600 font-bold p-2 mt-2 shadow-md">
+                                        <div className="bg-white text-blue-600 font-bold p-2 text-center shadow-md">
                                             <span className="underline text-[0.8rem]">ERKEK</span>
                                             {maleProducts &&
                                                 maleProducts.map((category, index) => (
                                                     <NavLink
                                                         key={index}
                                                         to={`/shopping/${category.gender ==="k" ? "kadın" : "erkek"}/${category.title.toLowerCase()}`}
-                                                        className="text-[#737373] text-[0.8rem]  font-bold block py-2"
+                                                        className="text-[#737373] text-[0.8rem] text-center font-bold block py-2"
                                                     >
                                                         {category.title}
                                                     </NavLink>
