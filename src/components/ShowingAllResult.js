@@ -2,30 +2,37 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { api } from '../api/api';
 import { useDispatch, useSelector } from 'react-redux';
-import { setProductList } from '../store/actions/productActions';
+import { filterProductList, setProductList } from '../store/actions/productActions';
 import ClipLoader from "react-spinners/ClipLoader";
 import { setLoading } from '../store/actions/loadingAction';
 
 export default function ShowingAllResult() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const [resultNumber, setResultsNumber] = useState("")
     const dispatch = useDispatch();
     const loading = useSelector((select) => select.loading.boolean)
+    const productList = useSelector((select) => select.product.productList)
 
-    const onSubmit = data => {
-        console.log(data);
-        dispatch(setLoading(true))
-        setTimeout(() => {
-            api.get(`products/?filter=${data.filter}&sort=${data.orderBy}`)
-                .then((response) => {
-                    console.log("REPONSE DATA , ", response)
-                    setResultsNumber(response.data.products.length)
-                    dispatch(setProductList(response.data.products))
-                    dispatch(setLoading(false));
-                })
-        }, 1000)
 
-    }
+
+    const onSubmit = (data) => {
+        dispatch(setLoading(true));
+        const categoryId = productList.length > 0 ? productList[0].category_id : "";
+        api.get(`products/?filter=${data.filter}&sort=${data.orderBy}&category=${categoryId}`)
+            .then((response) => {
+                console.log("RESPONSE DATA , ", response);
+                setResultsNumber(response.data.products.length);
+                dispatch(setProductList(response.data.products));
+            })
+            .catch((error) => {
+                console.error("API error: ", error);
+            })
+            .finally(() => {
+                dispatch(setLoading(false));
+                setValue("filter", "");
+            });
+    };
+
 
 
 
@@ -51,7 +58,6 @@ export default function ShowingAllResult() {
                             <button type='submit' className='py-[0.625rem] px-[1.25rem] w-[5.875rem] bg-[#23A6F0] hover:bg-blue-400 text-[#FFFFFF] rounded-[0.3125rem] '>
                                 Filter
                             </button>
-
                         </form>
 
                     </div>

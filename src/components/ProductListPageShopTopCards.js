@@ -19,14 +19,13 @@ export default function ProductListPageShopTopCards() {
   const dropDownHandler = (data) => {
     console.log("NE VAR BU DATA  , ", data);
     dispatch(setLoading(true))
-    setTimeout(() => {
-        api.get(`products?filter=${data.gender === "k" ? "kadın" : "erkek"}&category=${data.id}`)
-            .then((response) => {
-                console.log("REPONSE DATA , ", response)
-                dispatch(setProductList(response.data.products))
-                dispatch(setLoading(false));
-            })
-    }, 1000)
+    api.get(`products?filter=${data.gender === "k" ? "kadın" : "erkek"}&category=${data.id}`)
+      .then((response) => {
+        console.log("REPONSE DATA , ", response)
+        dispatch(setProductList(response.data.products))
+        dispatch(setLoading(false));
+      })
+
   }
 
 
@@ -34,7 +33,7 @@ export default function ProductListPageShopTopCards() {
   return (
     <div className='w-[70rem] mobile:flex-wrap mobile:w-[20rem] mx-auto flex mt-8 gap-4'>
       {sortedProductList.map((eleman, index) => (
-        <NavLink onClick={() => dropDownHandler(eleman)} key={index} to={`products?filter=${eleman.gender === "k" ? "kadın" : "erkek"}&category=${eleman.id}`}>
+        <NavLink onClick={() => dropDownHandler(eleman)} key={index} to={`products?${eleman.gender === "k" ? "kadın" : "erkek"}&${eleman.title}`}>
           <div key={index} className='w-[12rem]  mobile:min-w-max mobile:my-4 mobile:mx-auto h-[13rem] '>
             <img className='h-[20rem]' src={eleman.img} alt='resim' />
             <h1 className=' text-center text-black font-bold'>{eleman.title}</h1>
