@@ -20,6 +20,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { setProductList } from './store/actions/productActions';
 import { setLoading } from './store/actions/loadingAction';
+import ProductPageSingleProduct from './components/ProductPageSingleProduct';
 
 function App() {
 
@@ -72,6 +73,7 @@ console.log("APP JS USER " , user)
           <Route path="/pricing" component={Pricing} />
           <Route path="/signup" component={FormPage} />
           <Route path="/login" component={LoginPage} />
+          <Route path="/:categoryid/:productid/:productNameSlug" component={ProductPageSingleProduct} />
         </Switch>
       </Router>
     </div>

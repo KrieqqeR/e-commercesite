@@ -5,6 +5,7 @@ import { setProductList } from '../store/actions/productActions';
 import { api } from '../api/api';
 import { setLoading } from '../store/actions/loadingAction';
 import { ClipLoader } from 'react-spinners';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function ProductListPageCards() {
     const productList = useSelector((select) => select.product.productList);
@@ -12,6 +13,7 @@ export default function ProductListPageCards() {
     const dispatch = useDispatch();
     const [offset, setOffset] = useState(0);
     const limit = 25;
+    const history = useHistory()
 
     const fetchMoreData = () => {
         dispatch(setLoading(true))
@@ -32,6 +34,14 @@ export default function ProductListPageCards() {
 
     };
 
+    const onClickHandler = (data) => {
+        console.log("HİSTORYYY , DATA ", data)
+        history.push(`/${data.category_id}/${data.id}/${(data.name).split(" ").join("").toLowerCase()}`)
+
+
+    }
+
+
     useEffect(() => {
         fetchMoreData();
     }, []);
@@ -47,7 +57,7 @@ export default function ProductListPageCards() {
                     className='w-[70rem] mobile:w-[20rem] flex flex-wrap mobile:flex-col mx-auto gap-8'
                 >
                     {productList.map((eleman, index) => (
-                        <div key={index} className='cursor-pointer'>
+                        <div onClick={() => onClickHandler(eleman)} key={index} className='cursor-pointer'>
                             {eleman && (
                                 <>
                                     {eleman.images && eleman.images[0] && (
