@@ -29,7 +29,6 @@ export default function ShowingAllResult() {
             })
             .finally(() => {
                 dispatch(setLoading(false));
-                setValue("filter", "");
             });
     };
 

@@ -33,7 +33,7 @@ export default function ProductListPageShopTopCards() {
   return (
     <div className='w-[70rem] mobile:flex-wrap mobile:w-[20rem] mx-auto flex mt-8 gap-4'>
       {sortedProductList.map((eleman, index) => (
-        <NavLink onClick={() => dropDownHandler(eleman)} key={index} to={`products?${eleman.gender === "k" ? "kadın" : "erkek"}&${eleman.title}`}>
+        <NavLink onClick={() => dropDownHandler(eleman)} key={index} to={`/products/${eleman.gender === "k" ? "kadın" : "erkek"}/${eleman.title}`}>
           <div key={index} className='w-[12rem]  mobile:min-w-max mobile:my-4 mobile:mx-auto h-[13rem] '>
             <img className='h-[20rem]' src={eleman.img} alt='resim' />
             <h1 className=' text-center text-black font-bold'>{eleman.title}</h1>

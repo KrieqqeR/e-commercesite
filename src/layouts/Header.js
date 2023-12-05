@@ -109,7 +109,7 @@ export default function Header() {
                                                 <NavLink
                                                     key={index}
                                                     onClick={() => dropDownHandler(category)}
-                                                    to={`products?${category.gender === "k" ? "kadın" : "erkek"}&${category.title}`}
+                                                    to={`/products/${category.gender === "k" ? "kadın" : "erkek"}/${category.title}`}
                                                     className="text-[#737373] text-center text-[0.8rem] font-bold block py-2"
 
                                                 >
@@ -125,7 +125,7 @@ export default function Header() {
                                                     <NavLink
                                                         key={index}
                                                         onClick={() => dropDownHandler(category)}
-                                                        to={`products?${category.gender === "k" ? "kadın" : "erkek"}&${category.title}`}
+                                                        to={`/products/${category.gender === "k" ? "kadın" : "erkek"}/${category.title}`}
                                                         className="text-[#737373] text-[0.8rem] text-center font-bold block py-2"
 
                                                     >
