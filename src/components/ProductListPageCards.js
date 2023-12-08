@@ -35,7 +35,7 @@ export default function ProductListPageCards() {
 
     const onClickHandler = (data) => {
         console.log('HİSTORYYY , DATA ', data);
-        history.push(`/${data.category_id}/${data.id}/${data.name.split(' ').join('').toLowerCase()}`);
+        history.push(`/${data.category_id}/${data.id}/${data.name.split(' ').join('-').toLowerCase()}`);
     };
 
     useEffect(() => {
