@@ -27,6 +27,7 @@ export default function Header() {
     const femaleProducts = productList?.filter(product => product.code?.includes("k:"));
     const maleProducts = productList?.filter(product => product.code?.includes("e:"));
     const [showShoppingCard, setShowShoppingCard] = useState(false)
+    const shoppingCardList = useSelector((select) => select.shopping.card);
 
     console.log("GRAVATA ICIN USER : ", user)
 
@@ -172,9 +173,9 @@ export default function Header() {
                             {/* ... diğer ikonlar */}
                         </div>
 
-                        <div onClick={() => shoppingCardOnClickHandler()} className= {`${showShoppingCard ? 'block' : 'flex'} cursor-pointer`}>
+                        <div onClick={() => shoppingCardOnClickHandler()} className= {`${showShoppingCard ? 'block' : 'flex'} cursor-pointer relative mr-2`}>
                             <AiOutlineShoppingCart className="mt-1 cursor-pointer" />
-                            <span className="mt-1">1</span>
+                            <span className="mt-1 absolute top-0 left-4">{shoppingCardList.length-1}</span>
                             {showShoppingCard && <ShoppingCart/>}
                         </div>
                         <div className="flex cursor-pointer">
