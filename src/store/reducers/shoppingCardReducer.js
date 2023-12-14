@@ -5,7 +5,7 @@ import {
 } from "../actions/shoppingCardActions"
 
 const initialState = {
-    customerList: [],
+    card: [{ count: 0, checked: false, product: {} }],
     payment: {},
     address: {}
 }
@@ -14,7 +14,7 @@ const shoppingCardReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_LIST:
             return {
-                ...state, customerList: [...state.customerList, action.payload]
+                ...state, card: [...state.card, { count: 1, checked: true, product: action.payload }]
             }
         case SET_PAYMENT:
             return {

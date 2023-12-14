@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../store/actions/loadingAction";
 import { setProductList } from "../store/actions/productActions";
 import { api } from "../api/api";
+import { ShoppingCart } from "../components/ShoppingCart";
 
 
 
@@ -25,8 +26,13 @@ export default function Header() {
     const productList = useSelector((state) => state.global?.categories[0]);
     const femaleProducts = productList?.filter(product => product.code?.includes("k:"));
     const maleProducts = productList?.filter(product => product.code?.includes("e:"));
+    const [showShoppingCard, setShowShoppingCard] = useState(false)
 
     console.log("GRAVATA ICIN USER : ", user)
+
+    const shoppingCardOnClickHandler = () => {
+        setShowShoppingCard(!showShoppingCard)
+    }
 
     const toggleDropDown = () => {
         setDropDown(!dropDown);
@@ -165,9 +171,11 @@ export default function Header() {
                             <BsSearch className="mt-1" />
                             {/* ... diğer ikonlar */}
                         </div>
-                        <div className="flex cursor-pointer">
+
+                        <div onClick={() => shoppingCardOnClickHandler()} className= {`${showShoppingCard ? 'block' : 'flex'} cursor-pointer`}>
                             <AiOutlineShoppingCart className="mt-1 cursor-pointer" />
                             <span className="mt-1">1</span>
+                            {showShoppingCard && <ShoppingCart/>}
                         </div>
                         <div className="flex cursor-pointer">
                             <AiOutlineHeart className="mt-1" />
