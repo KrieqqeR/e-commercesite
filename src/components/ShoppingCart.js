@@ -6,7 +6,7 @@ export const ShoppingCart = () => {
 
 
     return (
-        <div className='mt-6 border-2 w-[20rem]'>
+        <div className='mt-6 border-2 w-[20rem] absolute top-24 right-4 z-50 bg-white '>
             <div className='text-center my-4'>
                 Sepetim {<span>(</span>}{shoppingCardList?.length - 1} Ürün{<span>)</span>}
             </div>
