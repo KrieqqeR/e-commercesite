@@ -6,12 +6,13 @@ export const ShoppingCart = () => {
 
 
     return (
-        <div>
-            <div>
+        <div className='mt-6 border-2 w-[20rem]'>
+            <div className='text-center my-4'>
                 Sepetim {<span>(</span>}{shoppingCardList?.length - 1} Ürün{<span>)</span>}
             </div>
+            <hr />
             {shoppingCardList?.map((eleman, index) => (
-                <div key={index}>
+                <div key={index} className='flex my-2'>
                     {eleman.product && eleman.product.images && eleman.product.images.length > 0 && (
                         <img
                             className='w-[5rem] h-[5rem]'
@@ -19,18 +20,18 @@ export const ShoppingCart = () => {
                             alt='resim'
                         />
                     )}
-                    <div>
-                        <h1>{eleman.checked && eleman.product.name}</h1>
+                    <div className='ml-4'>
+                        <h1 className='text-[1rem]'>{eleman.checked && eleman.product.name}</h1>
                         <div>
-                            <h1>{eleman.checked && `Adet : ${eleman.count}`}</h1>
+                            <h1 className='text-[0.8rem] font-bold text-[]'>{eleman.checked && `Adet : ${eleman.count}`}</h1>
                         </div>
-                        <p>{eleman.checked && `Fiyat : ${eleman.product.price}`}</p>
+                        <p className='text-[#FFA500]'>{eleman.checked && `Fiyat : ${eleman.product.price} ₺`} </p>
                     </div>
                 </div>
             ))}
-            <div>
-                <button>Sepete Git</button>
-                <button>Alışverisi Tamamla</button>
+            <div className='flex justify-around mb-1'>
+                <button className='px-4 py-2 rounded-md hover:bg-[#FFA500]'>Sepete Git</button>
+                <button className='px-4 py-2 rounded-md hover:bg-[#FFA500]'>Alışverisi Tamamla</button>
             </div>
         </div>
     );

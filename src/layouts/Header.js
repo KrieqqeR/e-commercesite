@@ -28,8 +28,13 @@ export default function Header() {
     const maleProducts = productList?.filter(product => product.code?.includes("e:"));
     const [showShoppingCard, setShowShoppingCard] = useState(false)
     const shoppingCardList = useSelector((select) => select.shopping.card);
+    const [showCardProductNumber, setShowCardProductNumber] = useState(true)
 
     console.log("GRAVATA ICIN USER : ", user)
+
+    const showCardProductNumberHandler = () => {
+        setShowCardProductNumber(!showCardProductNumber)
+    }
 
     const shoppingCardOnClickHandler = () => {
         setShowShoppingCard(!showShoppingCard)
@@ -173,11 +178,19 @@ export default function Header() {
                             {/* ... diğer ikonlar */}
                         </div>
 
-                        <div onClick={() => shoppingCardOnClickHandler()} className= {`${showShoppingCard ? 'block' : 'flex'} cursor-pointer relative mr-2`}>
-                            <AiOutlineShoppingCart className="mt-1 cursor-pointer" />
-                            <span className="mt-1 absolute top-0 left-4">{shoppingCardList.length-1}</span>
-                            {showShoppingCard && <ShoppingCart/>}
+                        <div
+                            onClick={() => {
+                                shoppingCardOnClickHandler();
+                                showCardProductNumberHandler();
+                            }}
+                            className={`${showShoppingCard ? 'block' : 'flex'} cursor-pointer mr-2`}
+                        >
+                            <div className="flex">
+                                <AiOutlineShoppingCart className="mt-1 mx-auto cursor-pointer" />{showCardProductNumber && <span className="mt-1">{shoppingCardList.length - 1}</span>}
+                            </div>
+                            {showShoppingCard && <ShoppingCart />}
                         </div>
+
                         <div className="flex cursor-pointer">
                             <AiOutlineHeart className="mt-1" />
                             <span className="mt-1">1</span>
