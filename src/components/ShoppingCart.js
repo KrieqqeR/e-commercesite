@@ -1,9 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 export const ShoppingCart = () => {
     const shoppingCardList = useSelector((select) => select.shopping.card);
+    const history = useHistory()
 
+    const bigShoppingCardsender = () => {
+        history.push("/shoppingcard")
+    }
 
     return (
         <div className='mt-6 border-2 w-[20rem] absolute top-24 right-4 z-50 bg-white '>
@@ -30,8 +35,8 @@ export const ShoppingCart = () => {
                 </div>
             ))}
             <div className='flex justify-around mb-1'>
-                <button className='px-4 py-2 rounded-md hover:bg-[#FFA500]'>Sepete Git</button>
-                <button className='px-4 py-2 rounded-md hover:bg-[#FFA500]'>Alışverisi Tamamla</button>
+                <button onClick={() => bigShoppingCardsender()} className='px-4 py-2 rounded-md hover:bg-[#FFA500]'>Sepete Git</button>
+                <button onClick={() => bigShoppingCardsender()}  className='px-4 py-2 rounded-md hover:bg-[#FFA500]'>Alışverisi Tamamla</button>
             </div>
         </div>
     );

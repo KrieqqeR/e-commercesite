@@ -21,6 +21,7 @@ import axios from 'axios';
 import { setProductList } from './store/actions/productActions';
 import { setLoading } from './store/actions/loadingAction';
 import ProductPageSingleProduct from './components/ProductPageSingleProduct';
+import { BigShoppingCardPage } from './components/BigShoppingCardPage';
 
 function App() {
 
@@ -64,6 +65,7 @@ function App() {
           <Route path="/pricing" component={Pricing} />
           <Route path="/signup" component={FormPage} />
           <Route path="/login" component={LoginPage} />
+          <Route path="/shoppingcard" component={BigShoppingCardPage} />
           <Route path="/:categoryid/:productid/:productNameSlug" component={ProductPageSingleProduct} />
         </Switch>
       </Router>
