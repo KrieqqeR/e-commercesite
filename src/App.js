@@ -25,36 +25,27 @@ import ProductPageSingleProduct from './components/ProductPageSingleProduct';
 function App() {
 
   const dispatch = useDispatch();
-  const user = useSelector((store) =>store.user)
+  const user = useSelector((store) => store.user)
 
-console.log("APP JS USER " , user)
+  console.log("APP JS USER ", user)
 
   useEffect(() => {
-    
+
     dispatch(setLoading(true))
     const token = localStorage.getItem("token");
+    api.get("categories")
+        .then((res) => {
+          const categories = res.data;
+          console.log("CATEGORI Basarılır cekıldı: ", categories)
+          dispatch({ type: "SET_CATEGORY", payload: categories })
+        }).catch(error => {
+          console.log("CATEGORIES ERROR : ", error.message)
+        })
 
     if (token !== null) {
       axios.defaults.headers.common["Authorization"] = token;
       console.log("Token mevcut, otomatik giriş yapılıyor ...");
-
-
-      api.get("/categories", {
-        headers: {
-          'Authorization': token,
-          'Content-Type': 'application/json'
-        },
-      }).then((res) => {
-        const categories = res.data;
-        console.log("CATEGORI Basarılır cekıldı: ", categories)
-        dispatch({ type: "SET_CATEGORY", payload: categories })
-      }).catch(error => {
-        console.log("CATEGORIES ERROR : ", error.message)
-      })
-
-      
-
-      if(token){
+      if (token) {
         dispatch(getUserByVerify())
       }
     }
