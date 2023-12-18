@@ -47,13 +47,13 @@ export default function ShowingAllResult() {
                         className=" overflow-hidden  flex flex-row gap-1 w-full h-12 items-center px-4 rounded text-center cursor-pointer"
                     >
                         <form className=" tracking-[0.2] flex gap-2 leading-[28px] text-white font-semibold text-center cursor-pointer" onSubmit={handleSubmit(onSubmit)}>
-                            <select className='py-[0.625rem] px-[1.25rem]' {...register("orderBy")}>
-                                <option value="price:desc">High price to low</option>
-                                <option value="price:asc"> Low price to high</option>
-                                <option value="rating:desc"> Rating by high to low</option>
-                                <option value="rating:asc"> Rating by low to high</option>
+                            <select className='py-[0.625rem] px-[1.25rem] text-black font-bold' {...register("orderBy")}>
+                                <option className='text-black font-bold' value="price:desc">High price to low</option>
+                                <option className='text-black font-bold' value="price:asc"> Low price to high</option>
+                                <option className='text-black font-bold' value="rating:desc"> Rating by high to low</option>
+                                <option className='text-black font-bold' value="rating:asc"> Rating by low to high</option>
                             </select>
-                            <input className='py-[0.625rem] px-[1.25rem] ' type="text" placeholder="Filter" {...register("filter", {})} />
+                            <input className='py-[0.625rem] px-[1.25rem] placeholder-slate-500 '  type="text" placeholder="Filter" {...register("filter", {})} />
                             <button type='submit' className='py-[0.625rem] px-[1.25rem] w-[5.875rem] bg-[#23A6F0] hover:bg-blue-400 text-[#FFFFFF] rounded-[0.3125rem] '>
                                 Filter
                             </button>

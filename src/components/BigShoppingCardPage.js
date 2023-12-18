@@ -27,7 +27,7 @@ export const BigShoppingCardPage = () => {
 
   return (
     <div className="flex">
-      <div className=" h-full flex flex-col">
+      <div className="h-screen flex flex-col">
         <div className="pt-10 font-bold text-center mx-auto text-black text-[2rem]">
           BURAK E-Commerce
         </div>
