@@ -16,7 +16,7 @@ const OrderSummary = () => {
         setTotalProductPrice(totalPrice);
     }, [productList]);
     return (
-        <div className="w-[30rem] h-[28rem] mt-[10rem] mx-auto border-8 border-violet-500">
+        <div className="w-[30rem] h-[28rem] mt-[10rem] mx-auto border-8 border-violet-500 fixed right-16">
             <button className="px-[6rem] py-4 ml-20 bg-violet-400 mt-7 text-white font-bold">Sepeti Onayla</button>
             <div className="border-1 w-[20rem] mt-4 mx-auto flex gap-4 flex-col">
                 <h1 className="text-[2rem] font-bold text-black underline">Sipariş Özeti</h1>
