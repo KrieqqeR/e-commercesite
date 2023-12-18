@@ -30,12 +30,18 @@ const OrderSummary = () => {
                 </div>
                 <div className="flex text-black font-bold justify-between">
                     <h2>150 TL Üstü ve Kargo Bedava</h2>
-                    <p>{totalProductPrice >= 150 ? -35 : 35}₺</p>
+                    <p
+                        className={
+                            totalProductPrice < 150 ? "text-red-600" : "text-green-600"
+                        }
+                    >
+                        {totalProductPrice >= 150 ? -35 : 0}₺
+                    </p>
                 </div>
                 <hr />
                 <div className="flex text-black font-bold justify-between">
                     <h2>Toplam</h2>
-                    {totalProductPrice >=150 ? <p>{totalProductPrice.toFixed(2)}₺</p> : <p>{(totalProductPrice + 35).toFixed(2)}₺</p>}
+                    {totalProductPrice >= 150 ? <p>{totalProductPrice.toFixed(2)}₺</p> : <p>{(totalProductPrice + 35).toFixed(2)}₺</p>}
                 </div>
             </div>
             <button className="px-[6rem] py-4 ml-20 mt-5 bg-violet-400 text-white font-bold">Sepeti Onayla</button>
