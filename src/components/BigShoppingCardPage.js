@@ -76,7 +76,7 @@ export const BigShoppingCardPage = () => {
                     />
                   </div>
                 </div>
-                <div className="flex ml-20 w-[50vw] mt-8 h-[7rem] justify-around">
+                <div className="flex ml-20 w-[50vw] mt-12 h-[7rem] justify-around">
                   <h1 className="my-auto font-bold text-black">
                     ARAS CARGO : 35₺
                   </h1>
