@@ -34,7 +34,7 @@ export const PayingConfirmPage = () => {
                         </div>
                         {Array.from({ length: 3 }).map((_, i) => (
                             <div className='w-[30rem] h-[10rem] border-2 pl-4 pt-2 cursor-pointer' key={i}>
-                                <div className='flex justify-between mr-8'>
+                                <div className='flex justify-between mr-8 mt-4'>
                                     <h1 className='font-bold text-black'>Ahmet Mehmet</h1>
                                     <p className='text-black font-semibold'>TEL NO 183741824</p>
                                 </div>
