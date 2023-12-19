@@ -22,6 +22,7 @@ import { setProductList } from './store/actions/productActions';
 import { setLoading } from './store/actions/loadingAction';
 import ProductPageSingleProduct from './components/ProductPageSingleProduct';
 import { BigShoppingCardPage } from './components/BigShoppingCardPage';
+import { PayingConfirmPage } from './components/PayingConfirmPage';
 
 function App() {
 
@@ -35,13 +36,13 @@ function App() {
     dispatch(setLoading(true))
     const token = localStorage.getItem("token");
     api.get("categories")
-        .then((res) => {
-          const categories = res.data;
-          console.log("CATEGORI Basarılır cekıldı: ", categories)
-          dispatch({ type: "SET_CATEGORY", payload: categories })
-        }).catch(error => {
-          console.log("CATEGORIES ERROR : ", error.message)
-        })
+      .then((res) => {
+        const categories = res.data;
+        console.log("CATEGORI Basarılır cekıldı: ", categories)
+        dispatch({ type: "SET_CATEGORY", payload: categories })
+      }).catch(error => {
+        console.log("CATEGORIES ERROR : ", error.message)
+      })
 
     if (token !== null) {
       axios.defaults.headers.common["Authorization"] = token;
@@ -67,6 +68,7 @@ function App() {
           <Route path="/login" component={LoginPage} />
           <Route path="/shoppingcard" component={BigShoppingCardPage} />
           <Route path="/:categoryid/:productid/:productNameSlug" component={ProductPageSingleProduct} />
+          <Route path="/completepaying" component={PayingConfirmPage} />
         </Switch>
       </Router>
     </div>
