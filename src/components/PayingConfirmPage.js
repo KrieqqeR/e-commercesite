@@ -60,8 +60,8 @@ export const PayingConfirmPage = () => {
                             </div>
                         ))}
                         {isTrueOrFalse &&
-                            <div className='w-[30rem] mx-auto mt-12 mb-12 absolute left-[30rem] bg-white'>
-                                <p className='text-purple-500 font-bold text-[1.5rem] mb-8'>Add New Address</p>
+                            <div className='w-[30rem] mx-auto absolute left-[30rem] top-[10rem] bg-[#e2e8f0]'>
+                                <p className='text-purple-500 font-bold text-[1.5rem] mb-6'>Add New Address</p>
                                 <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit(onSubmit)}>
                                     <label className='flex gap-4 text-[1.2rem] font-bold text-orange-400'>Address:
                                         <input className='border-2' type="text"  {...register} />
@@ -89,7 +89,7 @@ export const PayingConfirmPage = () => {
                                     <label className='flex gap-4 font-bold text-orange-400'>Address 2:
                                         <input className='border-2' type='text' {...register("Address", {})} />
                                     </label>
-                                    <button className='bg-green-600 text-white font-bold px-4 py-4 rounded-md ' type='submit'>Gönder</button>
+                                    <button className='bg-green-600 text-white font-bold px-[13.8rem] mx-auto py-4 rounded-md ' type='submit'>Save</button>
                                 </form>
                             </div>
                         }
