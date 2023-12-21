@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 const OrderSummary = () => {
     const [totalProductPrice, setTotalProductPrice] = useState(0)
     const productList = useSelector((select) => select.shopping.card)
+    const [totalKargo, setTotalKargo] = useState(0)
 
     useEffect(() => {
         const totalPrice = productList.reduce((acc, item) => {
@@ -12,8 +13,10 @@ const OrderSummary = () => {
             }
             return acc;
         }, 0);
-
+        console.log("productList.product , ", productList)
         setTotalProductPrice(totalPrice);
+
+        setTotalKargo(productList.some((item) => item.checked) ? 35 : 0);
     }, [productList]);
     return (
         <div className="w-[30rem] h-[28rem] mt-[10rem] mx-auto border-8 border-violet-500 fixed right-16">
@@ -26,7 +29,7 @@ const OrderSummary = () => {
                 </div>
                 <div className="flex text-black font-bold justify-between">
                     <h2>Kargo Toplamı</h2>
-                    <p>35₺</p>
+                    <p>{totalKargo}</p>
                 </div>
                 <div className="flex text-black font-bold justify-between">
                     <h2>150 TL Üstü ve Kargo Bedava</h2>
@@ -41,7 +44,7 @@ const OrderSummary = () => {
                 <hr />
                 <div className="flex text-black font-bold justify-between">
                     <h2>Toplam</h2>
-                    {totalProductPrice >= 150 ? <p>{totalProductPrice.toFixed(2)}₺</p> : <p>{(totalProductPrice + 35).toFixed(2)}₺</p>}
+                    {totalProductPrice >= 150 ? <p>{totalProductPrice.toFixed(2)}₺</p> : <p>{(totalProductPrice + totalKargo).toFixed(2)}₺</p>}
                 </div>
             </div>
             <button className="px-[6rem] py-4 ml-20 mt-5 bg-violet-400 text-white font-bold">Sepeti Onayla</button>
