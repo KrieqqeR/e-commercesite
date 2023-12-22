@@ -52,7 +52,7 @@ export const PayingConfirmPage = () => {
                             <p className='text-[2rem] text-orange-500 font-bold text-center mt-8'>+</p>
                             <p className='font-bold text-black text-center '>Yeni Adres Ekle</p>
                         </div>
-                        {addressArray.map((each, i) => (
+                        {addressArray?.map((each, i) => (
                             <div className='w-[30rem] h-[10rem] border-2 pl-4 pt-2 cursor-pointer' key={i}>
                                 <div className='flex justify-between mr-8 mt-4'>
                                     <h1 className='font-bold text-black'>{each.name}</h1>
