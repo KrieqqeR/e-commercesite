@@ -2,16 +2,27 @@ import React, { useEffect, useState, useSyncExternalStore } from 'react'
 import OrderSummary from './OrderSummary'
 import { api } from '../api/api'
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLastSelectedAddress } from '../store/actions/shoppingCardActions';
 
 export const PayingConfirmPage = () => {
     const [addressArray, setAddressArray] = useState([])
     const [isTrueOrFalse, setTrueOrFalse] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [newAddress , setNewAddress] = useState(false)
+    const [newAddress, setNewAddress] = useState(false)
+    const dispatch = useDispatch()
+    const [selectedItem, setSelectedItem] = useState(null);
+    const lastSelectedAddress = useSelector((select) => select?.shopping?.lastSelectedAddres)
+
+    const handleRadioChange = (index) => {
+        setSelectedItem(index);
+        const selectedAddress = addressArray[index];
+        dispatch(setLastSelectedAddress(selectedAddress));
+    };
 
 
     const onSubmit = (data) => {
-        console.log("Form data " , data)
+        console.log("Form data ", data)
         try {
             console.log("Burda try catch gircek mi")
             api.post("/user/address", data).then((response) => {
@@ -25,10 +36,6 @@ export const PayingConfirmPage = () => {
         }
     };
 
-
-    
-
-    
 
     useEffect(() => {
         const fetchAddresses = async () => {
@@ -47,9 +54,9 @@ export const PayingConfirmPage = () => {
     return (
         <div className='flex'>
             <div className='mt-24 ml-8 w-[75rem] relative'>
-                <div className=''>
+                <div>
                     <h1 className='text-purple-500 font-bold text-[1.5rem]'>Adres Bilgileri</h1>
-                    <p className='mt-4'>ANKARA ETİMEGSTUT VS ODFSGJFDG</p>
+                    <p className='mt-4 font-bold text-blue-400'>{lastSelectedAddress?.title}</p>
                 </div>
                 <div className='flex mt-12'>
                     <p className='px-2 text-white font-bold text-[1.1rem] bg-purple-400 rounded-full mr-2'>!</p>
@@ -71,6 +78,10 @@ export const PayingConfirmPage = () => {
                         </div>
                         {addressArray?.map((each, i) => (
                             <div className='w-[30rem] h-[10rem] border-2 pl-4 pt-2 cursor-pointer' key={i}>
+                                <label>
+                                    <input type='radio' checked={selectedItem === i} onChange={() => handleRadioChange(i)} />
+                                    Seç
+                                </label>
                                 <div className='flex justify-between mr-8 mt-4'>
                                     <h1 className='font-bold text-black'>{each?.name}</h1>
                                     <p className='text-black font-semibold'>{each?.phone}</p>

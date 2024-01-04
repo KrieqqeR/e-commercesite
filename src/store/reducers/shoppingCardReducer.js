@@ -2,6 +2,7 @@ import {
   SET_LIST,
   SET_PAYMENT,
   SET_ADDRESS,
+  SET_LASTSELECTED_ADDRESS,
   DECREASE_LIST,
   FILTERED_PRODUCT,
   CHECKED_PRODUCT,
@@ -14,11 +15,12 @@ const initialState = {
     ? JSON.parse(storedShoppingCard)
     : [{ count: 0, checked: false, product: {} }],
   payment: {},
-  address: {},
+  address: [],
+  lastSelectedAddres: {}
 };
 
 const shoppingCardReducer = (state = initialState, action) => {
-  let updatedCard; // Declare it once outside the switch statement
+  let updatedCard;
 
   switch (action.type) {
     case SET_LIST:
@@ -72,6 +74,24 @@ const shoppingCardReducer = (state = initialState, action) => {
         (cards) => cards.product.id !== action.payload.id
       );
       break;
+
+    case SET_ADDRESS:
+      return {
+        ...state,
+        address: action.payload,
+      };
+
+    case SET_PAYMENT:
+      return {
+        ...state,
+        payment: action.payload,
+      };
+
+    case SET_LASTSELECTED_ADDRESS:
+      return {
+        ...state,
+        lastSelectedAddres: action.payload
+      };
 
     default:
       return state;
