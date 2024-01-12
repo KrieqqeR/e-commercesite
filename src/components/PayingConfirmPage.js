@@ -13,6 +13,7 @@ export const PayingConfirmPage = () => {
     const dispatch = useDispatch()
     const [selectedItem, setSelectedItem] = useState(null);
     const lastSelectedAddress = useSelector((select) => select?.shopping?.lastSelectedAddres)
+    const [isPaymentTrueOrFalse , setPaymentTrueOrFalse] = useState(false)
 
     const handleRadioChange = (index) => {
         setSelectedItem(index);
@@ -55,7 +56,7 @@ export const PayingConfirmPage = () => {
         <div className='flex'>
             <div className='mt-24 ml-8 w-[75rem] relative'>
                 <div>
-                    <h1 className='text-purple-500 font-bold text-[1.5rem]'>Adres Bilgileri</h1>
+                    <h1 className='text-purple-500 font-bold text-[1.5rem]'>1 - Adres Bilgileri</h1>
                     <p className='mt-4 font-bold text-blue-400'>{lastSelectedAddress?.title}</p>
                 </div>
                 <div className='flex mt-12'>
@@ -130,6 +131,19 @@ export const PayingConfirmPage = () => {
                                 </form>
                             </div>
                         }
+                    </div>
+                </div>
+                <div className='mt-20'>
+                    <div>
+                        <h1>2 - Ödeme Seçenekleri</h1>
+                        <h2>Banka / Kredi Kartı veya Alışveriş Kredisi ile ödemenizi güvenle yapabilirsiniz.</h2>
+                    </div>
+                    <div>
+                        <p>Kart Bilgileri</p>
+                        <p>Başka bir kart ile ödeme yap</p>
+                    </div>
+                    <div>
+                        BURDA KART RADIO LARI VE MAPLENECEK KISIMLAR GELECEK
                     </div>
                 </div>
             </div>
