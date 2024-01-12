@@ -3,7 +3,7 @@ import OrderSummary from './OrderSummary'
 import { api } from '../api/api'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLastSelectedAddress } from '../store/actions/shoppingCardActions';
+import { setLastSelectedAddress, setPayment } from '../store/actions/shoppingCardActions';
 
 export const PayingConfirmPage = () => {
     const [addressArray, setAddressArray] = useState([])
@@ -13,6 +13,7 @@ export const PayingConfirmPage = () => {
     const dispatch = useDispatch()
     const [selectedItem, setSelectedItem] = useState(null);
     const lastSelectedAddress = useSelector((select) => select?.shopping?.lastSelectedAddres)
+    const fromShoppingCard = useSelector((select) => select?.shopping?.payment)
     const [isPaymentTrueOrFalse, setPaymentTrueOrFalse] = useState(false)
     const [paymentCardArray, setPaymentCardArray] = useState([]);
     const [paymentCardSelected, setPaymentCardSelected] = useState(null)
@@ -28,6 +29,8 @@ export const PayingConfirmPage = () => {
     };
     const handlePaymentCardRadioChange = (index) => {
         setSelectedCard(index)
+        const lastSelectedCard = paymentCardArray[index];
+        dispatch(setPayment(lastSelectedCard))
     }
 
 
@@ -46,16 +49,16 @@ export const PayingConfirmPage = () => {
         }
     };
 
-    const cardOnSubmit = (data) =>{
-        console.log("CARD DATA , " , data)
+    const cardOnSubmit = (data) => {
+        console.log("CARD DATA , ", data)
         try {
-            api.post("/user/card",data)
-            .then((response)=>{
-                console.log("CARD GÖNDERİLDİ")
-                setNewCard(false)
-                setPaymentTrueOrFalse(false)
-            })
-        }catch(error){
+            api.post("/user/card", data)
+                .then((response) => {
+                    console.log("CARD GÖNDERİLDİ")
+                    setNewCard(false)
+                    setPaymentTrueOrFalse(false)
+                })
+        } catch (error) {
             console.log("ERROR WITH CARD SUBMIT")
         }
     }
@@ -75,7 +78,7 @@ export const PayingConfirmPage = () => {
         };
 
         fetchAddresses();
-    }, [newAddress,newCard]);
+    }, [newAddress, newCard]);
 
     return (
         <div className='flex'>
@@ -167,7 +170,7 @@ export const PayingConfirmPage = () => {
                         <h2 className='font-bold my-4'>Banka / Kredi Kartı veya Alışveriş Kredisi ile ödemenizi güvenle yapabilirsiniz.</h2>
                     </div>
                     <p className='font-bold text-[1.1rem]'>Kart Bilgileri</p>
-                    
+                    <p className='mt-4 font-bold text-blue-400'>{fromShoppingCard?.name_on_card}</p>
                     <div className='flex flex-wrap gap-4 justify-between mt-10'>
                         <div onClick={() => setPaymentTrueOrFalse(true)} className='w-[30rem] h-[10rem] border-2 cursor-pointer'>
                             <p className='text-[2rem] text-orange-500 font-bold text-center mt-8'>+</p>
