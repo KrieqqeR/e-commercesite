@@ -13,13 +13,22 @@ export const PayingConfirmPage = () => {
     const dispatch = useDispatch()
     const [selectedItem, setSelectedItem] = useState(null);
     const lastSelectedAddress = useSelector((select) => select?.shopping?.lastSelectedAddres)
-    const [isPaymentTrueOrFalse , setPaymentTrueOrFalse] = useState(false)
+    const [isPaymentTrueOrFalse, setPaymentTrueOrFalse] = useState(false)
+    const [paymentCardArray, setPaymentCardArray] = useState([]);
+    const [paymentCardSelected, setPaymentCardSelected] = useState(null)
+    const [selectedCard, setSelectedCard] = useState(null)
+    const [newCard, setNewCard] = useState(false)
+
+
 
     const handleRadioChange = (index) => {
         setSelectedItem(index);
         const selectedAddress = addressArray[index];
         dispatch(setLastSelectedAddress(selectedAddress));
     };
+    const handlePaymentCardRadioChange = (index) => {
+        setSelectedCard(index)
+    }
 
 
     const onSubmit = (data) => {
@@ -37,20 +46,36 @@ export const PayingConfirmPage = () => {
         }
     };
 
+    const cardOnSubmit = (data) =>{
+        console.log("CARD DATA , " , data)
+        try {
+            api.post("/user/card",data)
+            .then((response)=>{
+                console.log("CARD GÖNDERİLDİ")
+                setNewCard(false)
+                setPaymentTrueOrFalse(false)
+            })
+        }catch(error){
+            console.log("ERROR WITH CARD SUBMIT")
+        }
+    }
 
     useEffect(() => {
         const fetchAddresses = async () => {
             try {
                 const response = await api.get("user/address");
+                const paymentResponse = await api.get("user/card")
                 console.log("API response:", response);
+                console.log("API PAYMENT RESPONSE , ", paymentResponse)
                 setAddressArray(response.data);
+                setPaymentCardArray(paymentResponse.data)
             } catch (error) {
                 console.log("Error fetching addresses:", error);
             }
         };
 
         fetchAddresses();
-    }, [newAddress]);
+    }, [newAddress,newCard]);
 
     return (
         <div className='flex'>
@@ -133,17 +158,65 @@ export const PayingConfirmPage = () => {
                         }
                     </div>
                 </div>
+
+                {/* BURASI KART OLAN KISIM */}
                 <div className='mt-20'>
                     <div>
-                        <h1>2 - Ödeme Seçenekleri</h1>
-                        <h2>Banka / Kredi Kartı veya Alışveriş Kredisi ile ödemenizi güvenle yapabilirsiniz.</h2>
+                        <h1 className='text-purple-500 font-bold text-[1.5rem]'>2 - Ödeme Seçenekleri</h1>
+
+                        <h2 className='font-bold my-4'>Banka / Kredi Kartı veya Alışveriş Kredisi ile ödemenizi güvenle yapabilirsiniz.</h2>
                     </div>
-                    <div>
-                        <p>Kart Bilgileri</p>
-                        <p>Başka bir kart ile ödeme yap</p>
-                    </div>
-                    <div>
-                        BURDA KART RADIO LARI VE MAPLENECEK KISIMLAR GELECEK
+                    <p className='font-bold text-[1.1rem]'>Kart Bilgileri</p>
+                    
+                    <div className='flex flex-wrap gap-4 justify-between mt-10'>
+                        <div onClick={() => setPaymentTrueOrFalse(true)} className='w-[30rem] h-[10rem] border-2 cursor-pointer'>
+                            <p className='text-[2rem] text-orange-500 font-bold text-center mt-8'>+</p>
+                            <p className='font-bold text-black text-center '>Yeni Card Ekle</p>
+                        </div>
+                        {paymentCardArray?.map((each, i) => (
+                            <div className='w-[30rem] h-[10rem] border-2 pl-4 pt-2 cursor-pointer' key={i}>
+                                <label>
+                                    <input type='radio' checked={paymentCardArray === i} onChange={() => handlePaymentCardRadioChange(i)} />
+                                    Seç
+                                </label>
+                                <div className='mr-8 mt-4'>
+                                    <h1 className='font-bold text-black'>{each?.card_no}</h1>
+                                    <p className='text-black font-semibold'>{each?.name_on_card}</p>
+                                </div>
+                            </div>
+                        ))}
+                        {isPaymentTrueOrFalse &&
+                            <div className='w-[30rem] mx-auto absolute left-[30rem] top-[10rem] bg-[#e2e8f0]'>
+                                <p className='text-purple-500 font-bold text-[1.5rem] mb-6'>Card Informations</p>
+                                <form className='flex gap-4 flex-wrap' onSubmit={handleSubmit(cardOnSubmit)}>
+                                    <label className='flex gap-4 text-[1.2rem] font-bold text-orange-400'>Card Number :
+                                        <input className='border-2' type="text"  {...register("card_no", {})} />
+                                    </label>
+                                    <label className='flex gap-4 font-bold text-orange-400'>Expire Month:
+                                        <select className='border-2' {...register("expire_month")}>
+                                            {[...Array(12).keys()].map(month => (
+                                                <option key={month + 1} value={month + 1}>{month + 1}</option>
+                                            ))}
+                                        </select>
+                                    </label>
+
+                                    <label className='flex gap-4 font-bold text-orange-400'>Expire Year:
+                                        <select className='border-2' {...register("expire_year")}>
+                                            {[...Array(10).keys()].map(year => (
+                                                <option key={new Date().getFullYear() + year} value={new Date().getFullYear() + year}>
+                                                    {new Date().getFullYear() + year}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </label>
+                                    <label className='flex gap-4 font-bold text-orange-400'>Name On Card :
+                                        <input className='border-2' type="text" {...register("name_on_card", {})} />
+                                    </label>
+
+                                    <button onClick={() => setNewCard(true)} className='bg-green-600 text-white font-bold px-[13.8rem] mx-auto py-4 rounded-md ' type='submit'>Save</button>
+                                </form>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
